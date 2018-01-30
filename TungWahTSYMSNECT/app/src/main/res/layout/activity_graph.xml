@@ -1,0 +1,381 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Graph.GraphActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:id="@+id/galleryToolbar"
+        android:layout_height="wrap_content"
+        android:minHeight="?attr/actionBarSize"
+        android:background="?attr/colorPrimary">
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@mipmap/white_arrow"
+            android:id="@+id/btnBack"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add Graph Details"
+            android:textSize="18sp"
+            android:id="@+id/tbgtxt"
+            android:layout_marginLeft="20dp"
+            android:textColor="@color/colorWhite"
+            android:textStyle="bold"/>
+
+    </android.support.v7.widget.Toolbar>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/galleryToolbar">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:id="@+id/lldata"
+        android:orientation="vertical">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.8"
+                android:singleLine="true"
+                android:text="Bload Sugar"/>
+
+            <EditText
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.8"
+                android:inputType="numberDecimal"
+                android:id="@+id/txthb"
+                android:hint="Enter Sugar"/>
+            <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.5"
+            android:singleLine="true"
+            android:text="MML/L"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.8"
+                android:text="Pulse"/>
+
+            <EditText
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.8"
+                android:singleLine="true"
+                android:inputType="numberDecimal"
+                android:id="@+id/txtPulse"
+                android:hint="Enter Pulse"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:singleLine="true"
+                android:text="Time/Min"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.8"
+                android:text="Blood Presure"/>
+
+            <EditText
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.8"
+                android:singleLine="true"
+                android:inputType="numberDecimal"
+                android:id="@+id/txtUpperbp"
+                android:hint="Enter Upper BP"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:singleLine="true"
+                android:text="MMLHG"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.8"/>
+
+            <EditText
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.8"
+                android:singleLine="true"
+                android:inputType="numberDecimal"
+                android:id="@+id/txtLowerbp"
+                android:hint="Enter Lower BP"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:singleLine="true"
+                android:text="MMLHG"/>
+
+        </LinearLayout>
+
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.8"
+                android:text="Weight"/>
+
+            <EditText
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.8"
+                android:singleLine="true"
+                android:inputType="numberDecimal"
+                android:id="@+id/txtcbc"
+                android:hint="Enter Weight"/>
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.5"
+                android:singleLine="true"
+                android:text="Pound"/>
+
+        </LinearLayout>
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:orientation="horizontal">
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Add"
+                android:layout_marginRight="10dp"
+                android:background="@color/colorPrimary"
+                android:textColor="@color/colorWhite"
+                android:id="@+id/btnAdd"/>
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:id="@+id/btnShowGraph"
+                android:textColor="@color/colorWhite"
+                android:layout_marginLeft="10dp"
+                android:background="@color/colorPrimary"
+                android:text="Show Graph"/>
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+
+
+
+
+
+
+           <!-- <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/lldata"
+                android:id="@+id/rltitle"
+                android:paddingTop="20dp">
+
+                <TextView
+                    android:id="@+id/date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:textStyle="bold"
+                    android:typeface="serif"
+                    android:text="Date" />
+
+                <TextView
+                    android:id="@+id/bp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:textStyle="bold"
+                    android:typeface="serif"
+                    android:layout_toRightOf="@+id/date"
+                    android:text="Blood Presure" />
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_below="@+id/bp">
+
+                    <TextView
+                        android:id="@+id/upper"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBaseline="@+id/date"
+                        android:layout_alignBottom="@+id/date"
+                        android:layout_marginLeft="30dp"
+                        android:text="Upper"
+                        android:textStyle="bold"
+                        android:typeface="serif" />
+
+                    <TextView
+                        android:id="@+id/lower"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBaseline="@+id/date"
+                        android:layout_alignBottom="@+id/date"
+                        android:layout_marginLeft="20dp"
+                        android:text="Lower"
+                        android:textStyle="bold"
+                        android:typeface="serif" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/pulse"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@+id/date"
+                    android:layout_alignBottom="@+id/date"
+                    android:layout_marginLeft="20dp"
+                    android:layout_toRightOf="@+id/bp"
+                    android:text="Pulse"
+                    android:textStyle="bold"
+                    android:typeface="serif" />
+
+                <TextView
+                    android:id="@+id/weight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@+id/date"
+                    android:layout_alignBottom="@+id/date"
+                    android:layout_marginLeft="20dp"
+                    android:layout_toRightOf="@+id/pulse"
+                    android:text="Weight"
+                    android:textStyle="bold"
+                    android:typeface="serif" />
+
+                <TextView
+                    android:id="@+id/sugar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBaseline="@+id/date"
+                    android:layout_alignBottom="@+id/date"
+                    android:layout_marginLeft="20dp"
+                    android:layout_toRightOf="@+id/weight"
+                    android:text="Sugar"
+                    android:textStyle="bold"
+                    android:typeface="serif" />
+
+
+
+            </RelativeLayout>-->
+
+            //////////
+
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/lldata"
+                android:scrollbars="horizontal">
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:padding="10dp">
+
+                <TableLayout
+                    android:id="@+id/tableLayout1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scrollbars="horizontal"
+                    android:gravity="center_horizontal"
+                    android:shrinkColumns="*"
+                    android:stretchColumns="*" />
+                </RelativeLayout>
+            </ScrollView>
+
+
+
+
+
+
+
+            <!--<RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_below="@+id/rltitle"
+                android:layout_height="match_parent">
+            <ListView
+                android:id="@+id/listViewIncome"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentLeft="true" />
+
+
+
+            </RelativeLayout>-->
+        </RelativeLayout>
+    </ScrollView>
+
+</RelativeLayout>

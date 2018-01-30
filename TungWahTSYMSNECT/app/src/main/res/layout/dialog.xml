@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:id="@+id/galleryToolbar"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:minHeight="?attr/actionBarSize"
+        android:background="?attr/colorPrimary">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Select Language"
+            android:textSize="18sp"
+            android:gravity="center_horizontal"
+            android:layout_marginLeft="16dp"
+            android:textColor="@color/colorWhite"
+            android:textStyle="bold"/>
+
+    </android.support.v7.widget.Toolbar>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:id="@+id/ll"
+        android:layout_marginTop="20dp"
+        android:layout_below="@+id/galleryToolbar"
+        android:orientation="vertical">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="Select Language"/>
+
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/spinLanguage"
+            android:layout_marginTop="20dp"
+            android:entries="@array/language"/>
+
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Update"
+            android:id="@+id/btnUpdateLang"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="20dp"
+            android:background="@color/colorPrimary"/>
+
+    </LinearLayout>
+
+
+</RelativeLayout>

@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SetAlarm">
+
+    <android.support.v7.widget.Toolbar
+        android:layout_width="match_parent"
+        android:id="@+id/galleryToolbar"
+        android:layout_height="wrap_content"
+        android:minHeight="?attr/actionBarSize"
+        android:background="?attr/colorPrimary">
+
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@mipmap/white_arrow"
+            android:id="@+id/btnBack"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Set Alarm"
+            android:textSize="18sp"
+            android:id="@+id/tvtbnm"
+            android:layout_marginLeft="20dp"
+            android:textColor="@color/colorWhite"
+            android:textStyle="bold"/>
+
+    </android.support.v7.widget.Toolbar>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/galleryToolbar">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:gravity="center_horizontal">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:id="@+id/llmedname"
+            android:padding="16dp"
+            android:weightSum="2">
+
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Medicine Name"
+                android:id="@+id/tvMedName"
+                android:layout_weight="0.5"/>
+
+            <EditText
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:id="@+id/txtMedicinName"/>
+
+        </LinearLayout>
+
+
+        <!--<LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_below="@+id/llmedname"
+            android:id="@+id/llSetAlaram"
+            android:padding="16dp"
+            android:weightSum="2">
+
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Set Alaram"
+                android:layout_weight="0.7"/>
+
+            <EditText
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:id="@+id/txtSetAlaram"/>
+        </LinearLayout>-->
+
+
+        <TimePicker
+            android:id="@+id/timePicker"
+            android:layout_width="wrap_content"
+            android:scaleX="0.7"
+            android:layout_marginTop="-30dp"
+            android:scaleY="0.7"
+            android:layout_height="wrap_content" />
+
+
+        <Button
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="Set Alaram"
+            android:id="@+id/btnSetAlaram"
+            android:textColor="#FFFF"
+            android:textStyle="bold"
+            android:background="@color/colorAccent"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="-20dp"/>
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/lstAlarms"
+            android:layout_below="@+id/btnSetAlaram"></ListView>
+
+        <android.support.v7.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/lstAlarms"
+            android:layout_marginBottom="20dp"
+            android:id="@+id/recycle">
+
+        </android.support.v7.widget.RecyclerView>
+
+
+        </LinearLayout>
+    </RelativeLayout>
+
+    </ScrollView>
+</RelativeLayout>

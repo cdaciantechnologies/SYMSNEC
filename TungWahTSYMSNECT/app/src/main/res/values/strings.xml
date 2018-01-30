@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">SYMSNEC</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+
+    <string-array name="dieses_Name">
+        <!--<item>BP</item>-->
+        <item>Upper BP</item>
+        <item>Lower BP</item>
+        <item>Sugar</item>
+        <item>Weight</item>
+        <item>Pulse</item>
+    </string-array>
+
+
+    <string-array name="language">
+        <!--<item>BP</item>-->
+        <item>English</item>
+        <item>Chinese</item>
+    </string-array>
+</resources>
