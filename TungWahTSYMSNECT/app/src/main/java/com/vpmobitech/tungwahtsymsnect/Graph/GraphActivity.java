@@ -1,5 +1,8 @@
 package com.vpmobitech.tungwahtsymsnect.Graph;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.database.Cursor;
@@ -11,6 +14,7 @@ import android.support.v4.widget.SimpleCursorAdapter;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.vpmobitech.tungwahtsymsnect.AlertDialogActivity;
 import com.vpmobitech.tungwahtsymsnect.DBHelper;
 import com.vpmobitech.tungwahtsymsnect.MainActivity;
 import com.vpmobitech.tungwahtsymsnect.R;
@@ -18,8 +22,10 @@ import com.vpmobitech.tungwahtsymsnect.R;
 import android.content.ContentValues;
 import android.database.sqlite.SQLiteDatabase;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewParent;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -33,15 +39,16 @@ import android.widget.Toast;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-public class GraphActivity extends AppCompatActivity implements View.OnClickListener{
+public class GraphActivity extends AppCompatActivity implements View.OnClickListener {
 
-    EditText txtUpperbp,txtLowerbp,txthb,txtcbc,txtPulse;
-    Button btnAdd,btnShowGraph;
+    EditText txtUpperbp, txtLowerbp, txthb, txtcbc, txtPulse;
+    Button btnAdd, btnShowGraph;
     ImageButton btnBack;
     TableLayout table_layout;
     SQLController sqlcon;
     TextView tbgtxt;
-    String langPos,Medicine_Name,AM,PM,Graph,Set_Alarm,Time_is_set,Health_data_section,Alarm_Section,Camera;
+    TextView tv;
+    String langPos, Medicine_Name, AM, PM, Graph, Set_Alarm, Time_is_set, Health_data_section, Alarm_Section, Camera;
 
     Spinner spnDieses;
 
@@ -54,7 +61,7 @@ public class GraphActivity extends AppCompatActivity implements View.OnClickList
         setContentView(R.layout.activity_graph);
 
         init();
-        helper=new DBHelper(GraphActivity.this);
+        helper = new DBHelper(GraphActivity.this);
         sqlcon = new SQLController(this);
 
         try {
@@ -69,18 +76,17 @@ public class GraphActivity extends AppCompatActivity implements View.OnClickList
             Health_data_section = preferences.getString("Health_data_section", "");
             Alarm_Section = preferences.getString("Alarm_Section", "");
             Camera = preferences.getString("Camera", "");
-        }catch (NullPointerException e)
-        {
+        } catch (NullPointerException e) {
             e.printStackTrace();
         }
 
-        System.out.println("langPos===load=="+langPos);
+        System.out.println("langPos===load==" + langPos);
         if (langPos.equals("1")) {
             tbgtxt.setText(Graph);
 
-        }else if (langPos.equals("0")) {
+        } else if (langPos.equals("0")) {
             tbgtxt.setText("Add Graph Details");
-        }else{
+        } else {
 
         }
 
@@ -90,10 +96,31 @@ public class GraphActivity extends AppCompatActivity implements View.OnClickList
 
 
 
+
+
+
+
+
+      /*  final TableRow row = new TableRow(this);
+       *//* row.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT,
+                TableRow.LayoutParams.WRAP_CONTENT));*//*
+
+        row.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                int id=row.getId();
+
+                System.out.println("row id=123="+id);
+                show_dialog();
+            }
+        });*/
+
+
     }
 
 
-    private TextView getTextView(int id, String title, int color, int typeface, int bgColor,int gravity) {
+    private TextView getTextView(int id, String title, int color, int typeface, int bgColor, int gravity) {
         TextView tv = new TextView(this);
         tv.setId(id);
         tv.setText(title);
@@ -124,17 +151,15 @@ public class GraphActivity extends AppCompatActivity implements View.OnClickList
         TableLayout tl = findViewById(R.id.tableLayout1);
         TableRow tr = new TableRow(this);
         tr.setLayoutParams(getLayoutParams());
-        tr.addView(getTextView(0, "Date", Color.WHITE, Typeface.BOLD, Color.BLACK,Gravity.CENTER_HORIZONTAL));
-        tr.addView(getTextView(0, "Upper BP", Color.WHITE, Typeface.BOLD, Color.BLACK,Gravity.CENTER_HORIZONTAL));
-        tr.addView(getTextView(0, "Lower BP", Color.WHITE, Typeface.BOLD, Color.BLACK,Gravity.CENTER_HORIZONTAL));
-        tr.addView(getTextView(0, "Pulse", Color.WHITE, Typeface.BOLD, Color.BLACK,Gravity.CENTER_HORIZONTAL));
-        tr.addView(getTextView(0, "Weight", Color.WHITE, Typeface.BOLD, Color.BLACK,Gravity.CENTER_HORIZONTAL));
-        tr.addView(getTextView(0, "Sugar", Color.WHITE, Typeface.BOLD, Color.BLACK,Gravity.CENTER_HORIZONTAL));
-        tr.addView(getTextView(0, "Action", Color.WHITE, Typeface.BOLD, Color.BLACK,Gravity.CENTER_HORIZONTAL));
+        tr.addView(getTextView(0, "Date", Color.WHITE, Typeface.BOLD, Color.BLACK, Gravity.CENTER_HORIZONTAL));
+        tr.addView(getTextView(0, "Upper BP", Color.WHITE, Typeface.BOLD, Color.BLACK, Gravity.CENTER_HORIZONTAL));
+        tr.addView(getTextView(0, "Lower BP", Color.WHITE, Typeface.BOLD, Color.BLACK, Gravity.CENTER_HORIZONTAL));
+        tr.addView(getTextView(0, "Pulse", Color.WHITE, Typeface.BOLD, Color.BLACK, Gravity.CENTER_HORIZONTAL));
+        tr.addView(getTextView(0, "Weight", Color.WHITE, Typeface.BOLD, Color.BLACK, Gravity.CENTER_HORIZONTAL));
+        tr.addView(getTextView(0, "Sugar", Color.WHITE, Typeface.BOLD, Color.BLACK, Gravity.CENTER_HORIZONTAL));
+//        tr.addView(getTextView(0, "Action", Color.WHITE, Typeface.BOLD, Color.BLACK,Gravity.CENTER_HORIZONTAL));
         tl.addView(tr, getTblLayoutParams());
     }
-
-
 
 
     @NonNull
@@ -146,15 +171,15 @@ public class GraphActivity extends AppCompatActivity implements View.OnClickList
 
     private void init() {
 
-        txtUpperbp=(EditText)findViewById(R.id.txtUpperbp);
-        txtLowerbp=(EditText)findViewById(R.id.txtLowerbp);
-        txthb=(EditText)findViewById(R.id.txthb);
-        txtcbc=(EditText)findViewById(R.id.txtcbc);
-        txtPulse=(EditText)findViewById(R.id.txtPulse);
-        tbgtxt=(TextView) findViewById(R.id.tbgtxt);
-        btnAdd=(Button)findViewById(R.id.btnAdd);
-        btnShowGraph=(Button)findViewById(R.id.btnShowGraph);
-        btnBack=(ImageButton)findViewById(R.id.btnBack);
+        txtUpperbp = (EditText) findViewById(R.id.txtUpperbp);
+        txtLowerbp = (EditText) findViewById(R.id.txtLowerbp);
+        txthb = (EditText) findViewById(R.id.txthb);
+        txtcbc = (EditText) findViewById(R.id.txtcbc);
+        txtPulse = (EditText) findViewById(R.id.txtPulse);
+        tbgtxt = (TextView) findViewById(R.id.tbgtxt);
+        btnAdd = (Button) findViewById(R.id.btnAdd);
+        btnShowGraph = (Button) findViewById(R.id.btnShowGraph);
+        btnBack = (ImageButton) findViewById(R.id.btnBack);
         table_layout = (TableLayout) findViewById(R.id.tableLayout1);
 
         btnAdd.setOnClickListener(new View.OnClickListener() {
@@ -167,7 +192,7 @@ public class GraphActivity extends AppCompatActivity implements View.OnClickList
         btnShowGraph.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               startActivity(new Intent(GraphActivity.this,ShowGraph.class));
+                startActivity(new Intent(GraphActivity.this, ShowGraph.class));
                 finish();
             }
         });
@@ -175,7 +200,7 @@ public class GraphActivity extends AppCompatActivity implements View.OnClickList
         btnBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               startActivity(new Intent(GraphActivity.this,MainActivity.class));
+                startActivity(new Intent(GraphActivity.this, MainActivity.class));
                 finish();
             }
         });
@@ -183,15 +208,14 @@ public class GraphActivity extends AppCompatActivity implements View.OnClickList
     }
 
 
-    public void InsertReminderInLocal()
-    {
+    public void InsertReminderInLocal() {
 
         String date = new SimpleDateFormat("dd-MM-yyyy").format(new Date());
-        System.out.println("Date=1=="+date);
+        System.out.println("Date=1==" + date);
 
-        helper=new DBHelper(GraphActivity.this);
+        helper = new DBHelper(GraphActivity.this);
         // Add Record with help of ContentValues and DBHelper class object
-        ContentValues val=new ContentValues();
+        ContentValues val = new ContentValues();
 
 
         val.put(DBHelper.UPPER_BP, txtUpperbp.getText().toString());
@@ -202,7 +226,7 @@ public class GraphActivity extends AppCompatActivity implements View.OnClickList
         val.put(DBHelper.DATE, date);
 
 
-        db=helper.getWritableDatabase();
+        db = helper.getWritableDatabase();
         db.insert(DBHelper.TABLE_GRAPH, null, val);
         db.close();
 
@@ -215,21 +239,19 @@ public class GraphActivity extends AppCompatActivity implements View.OnClickList
         txtPulse.setText("");
 //        BuildTable();
 
-        startActivity(new Intent(GraphActivity.this,GraphActivity.class));
+        startActivity(new Intent(GraphActivity.this, GraphActivity.class));
     }
 
-    public void fetchdata()
-    {
-        db=helper.getReadableDatabase();
+    public void fetchdata() {
+        db = helper.getReadableDatabase();
 
-        Cursor mCursor=db.query(DBHelper.TABLE_GRAPH, null, null, null, null, null, null);
+        Cursor mCursor = db.query(DBHelper.TABLE_GRAPH, null, null, null, null, null, null);
 
-        if(mCursor!=null)
-        {
+        if (mCursor != null) {
             mCursor.moveToFirst();
         }
 
-        String[] columns = new String[] {
+        String[] columns = new String[]{
 
 
                 helper.DATE,
@@ -241,10 +263,10 @@ public class GraphActivity extends AppCompatActivity implements View.OnClickList
         };
 
         //the XML defined views which the data will be bound to
-        int[] to = new int[] {
+        int[] to = new int[]{
                 R.id.date,
                 R.id.upper,
-               // R.id.lower,
+                // R.id.lower,
                 R.id.pulse,
                 R.id.weight,
                 R.id.sugar
@@ -261,15 +283,62 @@ public class GraphActivity extends AppCompatActivity implements View.OnClickList
     }
 
 
+    @Override
+    public boolean onKeyLongPress(int keyCode, KeyEvent event) {
+
+        System.out.println("On Long key Pressed....");
+       /* TableLayout container = (TableLayout) v.getParent();
+        // delete the row and invalidate your view so it gets
+        // redrawn
+        container.removeView(v);
+        container.invalidate();*/
+        return super.onKeyLongPress(keyCode, event);
+    }
+
+    public boolean onLongClick(View v) {
+        // TODO Auto-generated method stub
+        TableLayout container = (TableLayout) v.getParent();
+        // delete the row and invalidate your view so it gets
+        // redrawn
+        System.out.println("On Long key Pressed..22..");
+        container.removeView(v);
+        container.invalidate();
+        return false;
+    }
+
     private void BuildTable() {
 
         sqlcon.open();
         Cursor c = sqlcon.readEntry();
 
-        int rows = c.getCount();
+        final int rows = c.getCount();
         int cols = c.getColumnCount();
 
         c.moveToFirst();
+
+        View.OnClickListener tablerowOnClickListener = new View.OnClickListener() {
+            public void onClick(View v) {
+                //GET TEXT HERE
+                //String currenttext = ((TextView)v).getText().toString());
+
+                String a= String.valueOf(tv.getText());
+                System.out.println("row selected --> " + v.getTag());
+
+                int id= (int) v.getTag();
+
+
+
+                TableRow tablerow = (TableRow) v;
+                TextView sample = (TextView) tablerow.getChildAt(0);
+                String date=sample.getText().toString();
+
+                System.out.println("Row Text: " + date);
+
+                show_dialog(date);
+
+            }
+        };
+
 
         // outer for loop
         for (int i = 0; i < rows; i++) {
@@ -277,33 +346,13 @@ public class GraphActivity extends AppCompatActivity implements View.OnClickList
             final TableRow row = new TableRow(this);
             row.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT,
                     TableRow.LayoutParams.WRAP_CONTENT));
-
-            row.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    ViewParent i=row.getParent();
-                    System.out.println("Count==="+i);
-
-//                    String i=row.getParent();
-                }
-            });
-
-            ImageView iv = new ImageView(this);
-            iv.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT,
-                    TableRow.LayoutParams.WRAP_CONTENT));
-//            iv.setBackgroundResource(R.drawable.cell_shape);
-
-            //iv.setPadding(0, 5, 0, 5);
-            iv.setRight(1);
-            iv.setBackgroundResource(R.mipmap.ic_launcher);
+            row.setOnClickListener(tablerowOnClickListener);
 
 
-            row.addView(iv);
-//            row.addView("asd");
             // inner for loop
             for (int j = 0; j < cols; j++) {
 
-                TextView tv = new TextView(this);
+                tv = new TextView(this);
                 tv.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT,
                         TableRow.LayoutParams.WRAP_CONTENT));
                 tv.setBackgroundResource(R.drawable.cell_shape);
@@ -311,13 +360,14 @@ public class GraphActivity extends AppCompatActivity implements View.OnClickList
                 tv.setTextSize(14);
                 tv.setPadding(0, 5, 0, 5);
                 tv.setText(c.getString(j));
+                tv.setTag(i);
 
-                System.out.println("TV======"+tv.toString());
+                row.setTag(i);
+
+                System.out.println("TV======" + tv.toString());
+
 
                 row.addView(tv);
-
-
-
 
             }
 
@@ -329,13 +379,63 @@ public class GraphActivity extends AppCompatActivity implements View.OnClickList
         sqlcon.close();
     }
 
+
     @Override
     public void onClick(View v) {
 
     }
+
     @Override
     public void onBackPressed() {
-        startActivity(new Intent(GraphActivity.this,MainActivity.class));
+        startActivity(new Intent(GraphActivity.this, MainActivity.class));
+
+    }
+
+
+    public void show_dialog(final String date) {
+
+        AlertDialog alertDialog = new AlertDialog.Builder(
+                GraphActivity.this).create();
+
+        // Setting Dialog Title
+        alertDialog.setTitle("Delete Record");
+
+        // Setting Dialog Message
+        alertDialog.setMessage("You want to delete record?");
+
+        // Setting Icon to Dialog
+        alertDialog.setIcon(R.drawable.app_launcher);
+
+        // Setting OK Button
+        alertDialog.setButton("OK", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                // Write your code here to execute after dialog closed
+
+                DeleteRecord(date);
+
+                Toast.makeText(getApplicationContext(), "You clicked on OK", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        // Showing Alert Message
+        alertDialog.show();
+    }
+
+    private void DeleteRecord(String date) {
+        helper=new DBHelper(this);
+        db=helper.getWritableDatabase();
+
+        System.out.println("DAte=="+date);
+
+        String whereClause = "date=?";
+        String[] whereArgs = new String[] { String.valueOf(date) };
+
+        db.delete(helper.TABLE_GRAPH, whereClause, whereArgs);
+        db.close();
+
+        Toast.makeText(GraphActivity.this,"Record Deleted Succefully",Toast.LENGTH_SHORT).show();
+        startActivity(new Intent(GraphActivity.this,GraphActivity.class));
+
 
     }
 }
