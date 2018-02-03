@@ -157,6 +157,7 @@ public class GraphActivity extends AppCompatActivity implements View.OnClickList
         tv.setText(title);
         tv.setGravity(gravity);
         tv.setTextColor(color);
+
         tv.setTextSize(12);
         tv.setTypeface(Typeface.DEFAULT, typeface);
         tv.setPadding(5,5,5,5);
@@ -184,16 +185,39 @@ public class GraphActivity extends AppCompatActivity implements View.OnClickList
         TableRow tr = new TableRow(this);
         tr.setLayoutParams(getLayoutParams());
 
-        //if (langPos.equals("1")) {
-        tr.addView(getTextView(0, "Id", Color.WHITE, Typeface.BOLD, R.drawable.bg, Gravity.CENTER_HORIZONTAL));
-        tr.addView(getTextView(0, Date, Color.WHITE, Typeface.BOLD, R.drawable.bg, Gravity.CENTER_HORIZONTAL));
-        tr.addView(getTextView(0, UBP, Color.WHITE, Typeface.BOLD,  R.drawable.bg, Gravity.CENTER_HORIZONTAL));
-        tr.addView(getTextView(0, LBP, Color.WHITE, Typeface.BOLD,  R.drawable.bg, Gravity.CENTER_HORIZONTAL));
-        tr.addView(getTextView(0, Pulse, Color.WHITE, Typeface.BOLD,  R.drawable.bg, Gravity.CENTER_HORIZONTAL));
-        tr.addView(getTextView(0, Weight, Color.WHITE, Typeface.BOLD,  R.drawable.bg, Gravity.CENTER_HORIZONTAL));
-        tr.addView(getTextView(0, Sugar, Color.WHITE, Typeface.BOLD,  R.drawable.bg, Gravity.CENTER_HORIZONTAL));
-        tr.addView(getTextView(0, "Action", Color.WHITE, Typeface.BOLD,  R.drawable.bg, Gravity.CENTER_HORIZONTAL));
-        tl.addView(tr, getTblLayoutParams());
+        if (langPos.equals("1")) {
+            tr.addView(getTextView(0, "Id", Color.WHITE, Typeface.BOLD, R.drawable.bg, Gravity.CENTER_HORIZONTAL));
+            tr.addView(getTextView(0, Date, Color.WHITE, Typeface.BOLD, R.drawable.bg, Gravity.CENTER_HORIZONTAL));
+            tr.addView(getTextView(0, UBP, Color.WHITE, Typeface.BOLD, R.drawable.bg, Gravity.CENTER_HORIZONTAL));
+            tr.addView(getTextView(0, LBP, Color.WHITE, Typeface.BOLD, R.drawable.bg, Gravity.CENTER_HORIZONTAL));
+            tr.addView(getTextView(0, Pulse, Color.WHITE, Typeface.BOLD, R.drawable.bg, Gravity.CENTER_HORIZONTAL));
+            tr.addView(getTextView(0, Weight, Color.WHITE, Typeface.BOLD, R.drawable.bg, Gravity.CENTER_HORIZONTAL));
+            tr.addView(getTextView(0, Sugar, Color.WHITE, Typeface.BOLD, R.drawable.bg, Gravity.CENTER_HORIZONTAL));
+            tr.addView(getTextView(0, "Action", Color.WHITE, Typeface.BOLD, R.drawable.bg, Gravity.CENTER_HORIZONTAL));
+            tl.addView(tr, getTblLayoutParams());
+        }
+        else if (langPos.equals("0")){
+            tr.addView(getTextView(0, "Id", Color.WHITE, Typeface.BOLD, R.drawable.bg, Gravity.CENTER_HORIZONTAL));
+            tr.addView(getTextView(0, Date, Color.WHITE, Typeface.BOLD, R.drawable.bg, Gravity.CENTER_HORIZONTAL));
+            tr.addView(getTextView(0, UBP, Color.WHITE, Typeface.BOLD, R.drawable.bg, Gravity.CENTER_HORIZONTAL));
+            tr.addView(getTextView(0, LBP, Color.WHITE, Typeface.BOLD, R.drawable.bg, Gravity.CENTER_HORIZONTAL));
+            tr.addView(getTextView(0, Pulse, Color.WHITE, Typeface.BOLD, R.drawable.bg, Gravity.CENTER_HORIZONTAL));
+            tr.addView(getTextView(0, Weight, Color.WHITE, Typeface.BOLD, R.drawable.bg, Gravity.CENTER_HORIZONTAL));
+            tr.addView(getTextView(0, Sugar, Color.WHITE, Typeface.BOLD, R.drawable.bg, Gravity.CENTER_HORIZONTAL));
+            tr.addView(getTextView(0, "Action", Color.WHITE, Typeface.BOLD, R.drawable.bg, Gravity.CENTER_HORIZONTAL));
+            tl.addView(tr, getTblLayoutParams());
+        }
+        else{
+            tr.addView(getTextView(0, "Id", Color.WHITE, Typeface.BOLD, R.drawable.bg, Gravity.CENTER_HORIZONTAL));
+            tr.addView(getTextView(0, "Date", Color.WHITE, Typeface.BOLD, R.drawable.bg, Gravity.CENTER_HORIZONTAL));
+            tr.addView(getTextView(0, "Upper BP", Color.WHITE, Typeface.BOLD, R.drawable.bg, Gravity.CENTER_HORIZONTAL));
+            tr.addView(getTextView(0, "Lower BP", Color.WHITE, Typeface.BOLD, R.drawable.bg, Gravity.CENTER_HORIZONTAL));
+            tr.addView(getTextView(0, "Pulse", Color.WHITE, Typeface.BOLD, R.drawable.bg, Gravity.CENTER_HORIZONTAL));
+            tr.addView(getTextView(0, "Weight", Color.WHITE, Typeface.BOLD, R.drawable.bg, Gravity.CENTER_HORIZONTAL));
+            tr.addView(getTextView(0, "Sugar", Color.WHITE, Typeface.BOLD, R.drawable.bg, Gravity.CENTER_HORIZONTAL));
+            tr.addView(getTextView(0, "Action", Color.WHITE, Typeface.BOLD, R.drawable.bg, Gravity.CENTER_HORIZONTAL));
+            tl.addView(tr, getTblLayoutParams());
+        }
 
 
         tl.setColumnCollapsed(0,true);
@@ -433,10 +457,10 @@ public class GraphActivity extends AppCompatActivity implements View.OnClickList
             iv.setBackgroundResource(R.mipmap.b);
             iv.setBottom(2);
             //            iv.setBackgroundColor(R.color.colorPrimaryDark);
-            iv.setPadding(1, 1, 1, 5);
+            iv.setPadding(5, 5, 5, 5);
             iv.getImageMatrix();
 //                iv.setBackgroundResource(R.drawable.cell_shape);
-            iv.getLayoutParams().height = 40;
+            iv.getLayoutParams().height=40;
             iv.getLayoutParams().width= 30;
             iv.setTag(i);
             row.addView(iv);
