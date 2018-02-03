@@ -1,5 +1,6 @@
 package com.vpmobitech.tungwahtsymsnect.Graph;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
@@ -48,11 +49,12 @@ public class GraphActivity extends AppCompatActivity implements View.OnClickList
     SQLController sqlcon;
     TextView tbgtxt;
     TextView tv,tvBloodSugar,tvPulse,tvBP,tvWeight,tvTimepM,tvPound;
+    ImageView iv;
     String langPos, Medicine_Name, AM, PM, Graph, Set_Alarm, Time_is_set, Health_data_section, Alarm_Section, Camera;
     String Blood_Presure,Pulse,Weight,Sugar,Blood_Sugar,UBP,LBP,Time_Min,Pound,Date;
-
     Spinner spnDieses;
 
+    //    private static final int DIVIDER_SIZE = 2;
     DBHelper helper;
     SQLiteDatabase db;
 
@@ -78,6 +80,7 @@ public class GraphActivity extends AppCompatActivity implements View.OnClickList
             Alarm_Section = preferences.getString("Alarm_Section", "");
             Camera = preferences.getString("Camera", "");
 
+
             Blood_Presure = preferences.getString("Blood_Presure", "");
             Pulse = preferences.getString("Pulse", "");
             Weight = preferences.getString("Weight", "");
@@ -88,9 +91,13 @@ public class GraphActivity extends AppCompatActivity implements View.OnClickList
             Time_Min = preferences.getString("Time/Min", "");
             Pound = preferences.getString("Pound", "");
             Date = preferences.getString("Date", "");
+
+
+
         } catch (NullPointerException e) {
             e.printStackTrace();
         }
+
 
         System.out.println("langPos===load==" + langPos);
         if (langPos.equals("1")) {
@@ -144,7 +151,7 @@ public class GraphActivity extends AppCompatActivity implements View.OnClickList
     }
 
 
-    private TextView getTextView(int id, String title, int color, int typeface, int bgColor, int gravity) {
+    private TextView getTextView(int id, String title, int color, int typeface, int bgRes, int gravity) {
         TextView tv = new TextView(this);
         tv.setId(id);
         tv.setText(title);
@@ -152,7 +159,8 @@ public class GraphActivity extends AppCompatActivity implements View.OnClickList
         tv.setTextColor(color);
         tv.setTextSize(12);
         tv.setTypeface(Typeface.DEFAULT, typeface);
-        tv.setBackgroundColor(bgColor);
+        tv.setPadding(5,5,5,5);
+        tv.setBackgroundResource(bgRes);
         tv.setLayoutParams(getLayoutParams());
         tv.setOnClickListener(this);
         return tv;
@@ -175,14 +183,20 @@ public class GraphActivity extends AppCompatActivity implements View.OnClickList
         TableLayout tl = findViewById(R.id.tableLayout1);
         TableRow tr = new TableRow(this);
         tr.setLayoutParams(getLayoutParams());
-        tr.addView(getTextView(0, Date, Color.WHITE, Typeface.BOLD, Color.BLACK, Gravity.CENTER_HORIZONTAL));
-        tr.addView(getTextView(0, UBP, Color.WHITE, Typeface.BOLD, Color.BLACK, Gravity.CENTER_HORIZONTAL));
-        tr.addView(getTextView(0, LBP, Color.WHITE, Typeface.BOLD, Color.BLACK, Gravity.CENTER_HORIZONTAL));
-        tr.addView(getTextView(0, Pulse, Color.WHITE, Typeface.BOLD, Color.BLACK, Gravity.CENTER_HORIZONTAL));
-        tr.addView(getTextView(0, Weight, Color.WHITE, Typeface.BOLD, Color.BLACK, Gravity.CENTER_HORIZONTAL));
-        tr.addView(getTextView(0, Sugar, Color.WHITE, Typeface.BOLD, Color.BLACK, Gravity.CENTER_HORIZONTAL));
-//        tr.addView(getTextView(0, "Action", Color.WHITE, Typeface.BOLD, Color.BLACK,Gravity.CENTER_HORIZONTAL));
+
+        //if (langPos.equals("1")) {
+        tr.addView(getTextView(0, "Id", Color.WHITE, Typeface.BOLD, R.drawable.bg, Gravity.CENTER_HORIZONTAL));
+        tr.addView(getTextView(0, Date, Color.WHITE, Typeface.BOLD, R.drawable.bg, Gravity.CENTER_HORIZONTAL));
+        tr.addView(getTextView(0, UBP, Color.WHITE, Typeface.BOLD,  R.drawable.bg, Gravity.CENTER_HORIZONTAL));
+        tr.addView(getTextView(0, LBP, Color.WHITE, Typeface.BOLD,  R.drawable.bg, Gravity.CENTER_HORIZONTAL));
+        tr.addView(getTextView(0, Pulse, Color.WHITE, Typeface.BOLD,  R.drawable.bg, Gravity.CENTER_HORIZONTAL));
+        tr.addView(getTextView(0, Weight, Color.WHITE, Typeface.BOLD,  R.drawable.bg, Gravity.CENTER_HORIZONTAL));
+        tr.addView(getTextView(0, Sugar, Color.WHITE, Typeface.BOLD,  R.drawable.bg, Gravity.CENTER_HORIZONTAL));
+        tr.addView(getTextView(0, "Action", Color.WHITE, Typeface.BOLD,  R.drawable.bg, Gravity.CENTER_HORIZONTAL));
         tl.addView(tr, getTblLayoutParams());
+
+
+        tl.setColumnCollapsed(0,true);
     }
 
 
@@ -337,6 +351,7 @@ public class GraphActivity extends AppCompatActivity implements View.OnClickList
         return false;
     }
 
+    @SuppressLint("ResourceAsColor")
     private void BuildTable() {
 
         sqlcon.open();
@@ -378,7 +393,13 @@ public class GraphActivity extends AppCompatActivity implements View.OnClickList
             row.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT,
                     TableRow.LayoutParams.WRAP_CONTENT));
             row.setOnClickListener(tablerowOnClickListener);
-
+           /* View divider;
+            divider = new View(this);
+            divider.setLayoutParams(new TableLayout.LayoutParams(
+                    DIVIDER_SIZE, TableLayout.LayoutParams.MATCH_PARENT));
+            divider.setBackgroundColor(Color.GREEN);
+            row.addView(divider, new TableRow.LayoutParams(
+                    DIVIDER_SIZE, TableRow.LayoutParams.MATCH_PARENT));*/
 
             // inner for loop
             for (int j = 0; j < cols; j++) {
@@ -389,7 +410,7 @@ public class GraphActivity extends AppCompatActivity implements View.OnClickList
                 tv.setBackgroundResource(R.drawable.cell_shape);
                 tv.setGravity(Gravity.CENTER);
                 tv.setTextSize(14);
-                tv.setPadding(0, 5, 0, 5);
+                tv.setPadding(5, 5, 5, 5);
                 tv.setText(c.getString(j));
                 tv.setTag(i);
 
@@ -397,10 +418,29 @@ public class GraphActivity extends AppCompatActivity implements View.OnClickList
 
                 System.out.println("TV======" + tv.toString());
 
-
                 row.addView(tv);
 
+
+
+
+
+
             }
+
+            iv = new ImageView(this);
+            iv.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT,
+                    TableRow.LayoutParams.WRAP_CONTENT));
+            iv.setBackgroundResource(R.mipmap.b);
+            iv.setBottom(2);
+            //            iv.setBackgroundColor(R.color.colorPrimaryDark);
+            iv.setPadding(1, 1, 1, 5);
+            iv.getImageMatrix();
+//                iv.setBackgroundResource(R.drawable.cell_shape);
+            iv.getLayoutParams().height = 40;
+            iv.getLayoutParams().width= 30;
+            iv.setTag(i);
+            row.addView(iv);
+
 
             c.moveToNext();
 
@@ -458,7 +498,7 @@ public class GraphActivity extends AppCompatActivity implements View.OnClickList
 
         System.out.println("DAte=="+date);
 
-        String whereClause = "date=?";
+        String whereClause = "_id=?";
         String[] whereArgs = new String[] { String.valueOf(date) };
 
         db.delete(helper.TABLE_GRAPH, whereClause, whereArgs);
