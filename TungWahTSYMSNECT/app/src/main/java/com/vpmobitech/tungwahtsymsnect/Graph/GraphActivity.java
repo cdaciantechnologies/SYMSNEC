@@ -47,8 +47,9 @@ public class GraphActivity extends AppCompatActivity implements View.OnClickList
     TableLayout table_layout;
     SQLController sqlcon;
     TextView tbgtxt;
-    TextView tv;
+    TextView tv,tvBloodSugar,tvPulse,tvBP,tvWeight,tvTimepM,tvPound;
     String langPos, Medicine_Name, AM, PM, Graph, Set_Alarm, Time_is_set, Health_data_section, Alarm_Section, Camera;
+    String Blood_Presure,Pulse,Weight,Sugar,Blood_Sugar,UBP,LBP,Time_Min,Pound,Date;
 
     Spinner spnDieses;
 
@@ -76,6 +77,17 @@ public class GraphActivity extends AppCompatActivity implements View.OnClickList
             Health_data_section = preferences.getString("Health_data_section", "");
             Alarm_Section = preferences.getString("Alarm_Section", "");
             Camera = preferences.getString("Camera", "");
+
+            Blood_Presure = preferences.getString("Blood_Presure", "");
+            Pulse = preferences.getString("Pulse", "");
+            Weight = preferences.getString("Weight", "");
+            Sugar = preferences.getString("Sugar", "");
+            Blood_Sugar = preferences.getString("Blood_Sugar", "");
+            UBP = preferences.getString("UBP", "");
+            LBP = preferences.getString("LBP", "");
+            Time_Min = preferences.getString("Time/Min", "");
+            Pound = preferences.getString("Pound", "");
+            Date = preferences.getString("Date", "");
         } catch (NullPointerException e) {
             e.printStackTrace();
         }
@@ -83,9 +95,21 @@ public class GraphActivity extends AppCompatActivity implements View.OnClickList
         System.out.println("langPos===load==" + langPos);
         if (langPos.equals("1")) {
             tbgtxt.setText(Graph);
+            tvBloodSugar.setText(Blood_Sugar);
+            tvPulse.setText(Pulse);
+            tvBP.setText(Blood_Presure);
+            tvWeight.setText(Weight);
+            tvTimepM.setText(Time_Min);
+            tvPound.setText(Pound);
 
         } else if (langPos.equals("0")) {
             tbgtxt.setText("Add Graph Details");
+            tvBloodSugar.setText(Blood_Sugar);
+            tvPulse.setText(Pulse);
+            tvBP.setText(Blood_Presure);
+            tvWeight.setText(Weight);
+            tvTimepM.setText(Time_Min);
+            tvPound.setText(Pound);
         } else {
 
         }
@@ -151,12 +175,12 @@ public class GraphActivity extends AppCompatActivity implements View.OnClickList
         TableLayout tl = findViewById(R.id.tableLayout1);
         TableRow tr = new TableRow(this);
         tr.setLayoutParams(getLayoutParams());
-        tr.addView(getTextView(0, "Date", Color.WHITE, Typeface.BOLD, Color.BLACK, Gravity.CENTER_HORIZONTAL));
-        tr.addView(getTextView(0, "Upper BP", Color.WHITE, Typeface.BOLD, Color.BLACK, Gravity.CENTER_HORIZONTAL));
-        tr.addView(getTextView(0, "Lower BP", Color.WHITE, Typeface.BOLD, Color.BLACK, Gravity.CENTER_HORIZONTAL));
-        tr.addView(getTextView(0, "Pulse", Color.WHITE, Typeface.BOLD, Color.BLACK, Gravity.CENTER_HORIZONTAL));
-        tr.addView(getTextView(0, "Weight", Color.WHITE, Typeface.BOLD, Color.BLACK, Gravity.CENTER_HORIZONTAL));
-        tr.addView(getTextView(0, "Sugar", Color.WHITE, Typeface.BOLD, Color.BLACK, Gravity.CENTER_HORIZONTAL));
+        tr.addView(getTextView(0, Date, Color.WHITE, Typeface.BOLD, Color.BLACK, Gravity.CENTER_HORIZONTAL));
+        tr.addView(getTextView(0, UBP, Color.WHITE, Typeface.BOLD, Color.BLACK, Gravity.CENTER_HORIZONTAL));
+        tr.addView(getTextView(0, LBP, Color.WHITE, Typeface.BOLD, Color.BLACK, Gravity.CENTER_HORIZONTAL));
+        tr.addView(getTextView(0, Pulse, Color.WHITE, Typeface.BOLD, Color.BLACK, Gravity.CENTER_HORIZONTAL));
+        tr.addView(getTextView(0, Weight, Color.WHITE, Typeface.BOLD, Color.BLACK, Gravity.CENTER_HORIZONTAL));
+        tr.addView(getTextView(0, Sugar, Color.WHITE, Typeface.BOLD, Color.BLACK, Gravity.CENTER_HORIZONTAL));
 //        tr.addView(getTextView(0, "Action", Color.WHITE, Typeface.BOLD, Color.BLACK,Gravity.CENTER_HORIZONTAL));
         tl.addView(tr, getTblLayoutParams());
     }
@@ -181,6 +205,13 @@ public class GraphActivity extends AppCompatActivity implements View.OnClickList
         btnShowGraph = (Button) findViewById(R.id.btnShowGraph);
         btnBack = (ImageButton) findViewById(R.id.btnBack);
         table_layout = (TableLayout) findViewById(R.id.tableLayout1);
+
+        tvBloodSugar = (TextView) findViewById(R.id.tvBloodSugar);
+        tvPulse = (TextView) findViewById(R.id.tvPulse);
+        tvBP = (TextView) findViewById(R.id.tvBP);
+        tvWeight = (TextView) findViewById(R.id.tvWeight);
+        tvTimepM = (TextView) findViewById(R.id.tvTimepM);
+        tvPound = (TextView) findViewById(R.id.tvPound);
 
         btnAdd.setOnClickListener(new View.OnClickListener() {
             @Override

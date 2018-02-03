@@ -394,6 +394,18 @@ public class MainActivity extends AppCompatActivity
                     editor.putString("Health_data_section","健康指數");
                     editor.putString("Alarm_Section","用藥提示");
                     editor.putString("Camera","照相區");
+
+                    editor.putString("Blood_Presure","血压");
+                    editor.putString("Pulse","脉冲");
+                    editor.putString("Weight","重量");
+                    editor.putString("Sugar","血糖");
+                    editor.putString("Blood_Sugar","血糖");
+                    editor.putString("UBP","上部压力");
+                    editor.putString("LBP","较低的压力");
+                    editor.putString("Time/Min","时间/每分钟");
+                    editor.putString("Pound","磅");
+                    editor.putString("Date","日期");
+
                     editor.apply();
                 }
 
@@ -411,6 +423,17 @@ public class MainActivity extends AppCompatActivity
                     editor.putString("Health_data_section","Health data section");
                     editor.putString("Alarm_Section","Alarm_Section");
                     editor.putString("Camera","Camera");
+
+                    editor.putString("Blood_Presure","Blood Presure");
+                    editor.putString("Pulse","Pulse");
+                    editor.putString("Weight","Weight");
+                    editor.putString("Blood_Sugar","Blood Sugar");
+                    editor.putString("Sugar","Sugar");
+                    editor.putString("UBP","Upper BP");
+                    editor.putString("LBP","Lower BP");
+                    editor.putString("Time/Min","Time/Min");
+                    editor.putString("Pound","Pound");
+                    editor.putString("Date","Date");
                     editor.apply();
                 }
 
