@@ -49,7 +49,7 @@ public class GraphActivity extends AppCompatActivity implements View.OnClickList
     SQLController sqlcon;
     TextView tbgtxt;
     TextView tv,tvBloodSugar,tvPulse,tvBP,tvWeight,tvTimepM,tvPound;
-    ImageView iv;
+    TextView iv;
     String langPos, Medicine_Name, AM, PM, Graph, Set_Alarm, Time_is_set, Health_data_section, Alarm_Section, Camera;
     String Blood_Presure,Pulse,Weight,Sugar,Blood_Sugar,UBP,LBP,Time_Min,Pound,Date;
     Spinner spnDieses;
@@ -429,7 +429,7 @@ public class GraphActivity extends AppCompatActivity implements View.OnClickList
             for (int j = 0; j < cols; j++) {
 
                 tv = new TextView(this);
-                tv.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT,
+                tv.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.FILL_PARENT,
                         TableRow.LayoutParams.WRAP_CONTENT));
                 tv.setBackgroundResource(R.drawable.cell_shape);
                 tv.setGravity(Gravity.CENTER);
@@ -438,32 +438,57 @@ public class GraphActivity extends AppCompatActivity implements View.OnClickList
                 tv.setText(c.getString(j));
                 tv.setTag(i);
 
+
+
                 row.setTag(i);
 
                 System.out.println("TV======" + tv.toString());
 
                 row.addView(tv);
 
-
-
-
-
-
             }
 
-            iv = new ImageView(this);
+
+            iv = new TextView(this);
+            iv.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.FILL_PARENT,
+                    TableRow.LayoutParams.FILL_PARENT));
+            iv.setBackgroundResource(R.drawable.b);
+            iv.setGravity(Gravity.CENTER);
+            iv.setTextSize(14);
+            tv.setMaxWidth(20);
+            iv.getLayoutParams().width= 30;
+           /* iv.getLayoutParams().height=40;*/
+            iv.setPadding(5, 5, 5, 5);
+//            tv.setTag(i);
+
+            row.setTag(i);
+
+//            System.out.println("TV======" + tv.toString());
+
+            row.addView(iv);
+
+
+
+
+
+
+
+
+            /*iv = new TextView(this);
             iv.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT,
                     TableRow.LayoutParams.WRAP_CONTENT));
-            iv.setBackgroundResource(R.mipmap.b);
+            iv.setBackgroundResource(R.drawable.b);
             iv.setBottom(2);
             //            iv.setBackgroundColor(R.color.colorPrimaryDark);
             iv.setPadding(5, 5, 5, 5);
-            iv.getImageMatrix();
+//            iv.getImageMatrix();
 //                iv.setBackgroundResource(R.drawable.cell_shape);
-            iv.getLayoutParams().height=40;
-            iv.getLayoutParams().width= 30;
+            *//*iv.getLayoutParams().height=14;
+            iv.getLayoutParams().width= 30;*//*
+//            iv.getLayoutParams().height=rozmiar;
+//            iv.setScaleType(ImageView.ScaleType.FIT_XY);
             iv.setTag(i);
-            row.addView(iv);
+            row.addView(iv);*/
 
 
             c.moveToNext();

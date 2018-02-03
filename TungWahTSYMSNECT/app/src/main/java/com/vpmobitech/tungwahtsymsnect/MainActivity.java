@@ -71,6 +71,7 @@ public class MainActivity extends AppCompatActivity
         webView.getSettings().setJavaScriptEnabled(true);
         webView.setWebViewClient(new WebViewClient());
         webView.loadUrl("http://flamesquadsdemo.com/tw/");
+//        webView.loadUrl("https://www.google.co.in/");
 
         startService(new Intent(getApplicationContext(), LockService.class));
 
