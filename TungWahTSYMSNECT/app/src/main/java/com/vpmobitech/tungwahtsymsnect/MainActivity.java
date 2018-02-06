@@ -71,18 +71,19 @@ public class MainActivity extends AppCompatActivity
         webView.getSettings().setJavaScriptEnabled(true);
         webView.setWebViewClient(new WebViewClient());
         webView.loadUrl("http://flamesquadsdemo.com/tw/");
-//        webView.loadUrl("https://www.google.co.in/");
 
         startService(new Intent(getApplicationContext(), LockService.class));
 
         permissionStatus = getSharedPreferences("permissionStatus",MODE_PRIVATE);
         LocationPermission();
 
+        SharedPreferences preferences1 = PreferenceManager.getDefaultSharedPreferences(this);
+        langPos = String.valueOf(preferences1.getString("langPos", "1"));
 
 
         try {
             SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
-            langPos = preferences.getString("langPos", "");
+//            langPos = preferences.getString("langPos", "");
             Medicine_Name = preferences.getString("Medicine_Name", "");
             AM = preferences.getString("AM", "");
             PM = preferences.getString("PM", "");
@@ -92,6 +93,12 @@ public class MainActivity extends AppCompatActivity
             Health_data_section = preferences.getString("Health_data_section", "");
             Alarm_Section = preferences.getString("Alarm_Section", "");
             Camera = preferences.getString("Camera", "");
+
+
+
+
+
+
         }catch (NullPointerException e)
         {
             e.printStackTrace();
@@ -122,9 +129,64 @@ public class MainActivity extends AppCompatActivity
 
         System.out.println("langPos===load=="+langPos);
         if (langPos.equals("1")) {
+
+            SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
+            SharedPreferences.Editor editor = preferences.edit();
+            editor.putString("langPos",langPos);
+
+            editor.putString("Medicine_Name","藥名");
+            editor.putString("AM","上午");
+            editor.putString("PM","下午");
+            editor.putString("Set_Alarm","時間設定");
+            editor.putString("Graph","健康指數");
+            editor.putString("Time_is_set","時間已設定");
+            editor.putString("Health_data_section","健康指數");
+            editor.putString("Alarm_Section","用藥提示");
+            editor.putString("Camera","照相區");
+
+
+            editor.putString("Blood_Presure","血压");
+            editor.putString("Pulse","脉冲");
+            editor.putString("Weight","重量");
+            editor.putString("Sugar","血糖");
+            editor.putString("Blood_Sugar","血糖");
+            editor.putString("UBP","上部压力");
+            editor.putString("LBP","较低的压力");
+            editor.putString("Time/Min","时间/每分钟");
+            editor.putString("Pound","磅");
+            editor.putString("Date","日期");
+            editor.putString("btnAdd","加");
+            editor.putString("btnShowGraph","显示图表");
+            editor.putString("Action","行动");
+            editor.apply();
+
+            SharedPreferences preferences2 = PreferenceManager.getDefaultSharedPreferences(this);
+//            langPos = preferences.getString("langPos", "");
+            Medicine_Name = preferences2.getString("Medicine_Name", "");
+            AM = preferences2.getString("AM", "");
+            PM = preferences2.getString("PM", "");
+            Graph = preferences2.getString("Graph", "");
+            Set_Alarm = preferences2.getString("Set_Alarm", "");
+            Time_is_set = preferences2.getString("Time_is_set", "");
+            Health_data_section = preferences2.getString("Health_data_section", "");
+            Alarm_Section = preferences2.getString("Alarm_Section", "");
+            Camera = preferences2.getString("Camera", "");
+
             nav_camera.setTitle(Camera);
             nav_alarm.setTitle(Set_Alarm);
             nav_graph.setTitle(Graph);
+
+            System.out.println("langPos"+langPos);
+            System.out.println("Medicine_Name"+Medicine_Name);
+            System.out.println("AM"+AM);
+            System.out.println("PM"+PM);
+            System.out.println("Graph"+Graph);
+            System.out.println("Set_Alarm"+Set_Alarm);
+            System.out.println("Time_is_set"+Time_is_set);
+            System.out.println("Health_data_section"+Health_data_section);
+            System.out.println("Alarm_Section"+Alarm_Section);
+            System.out.println("Camera"+Camera);
+
         }else if (langPos.equals("0")) {
             nav_camera.setTitle(Camera);
             nav_alarm.setTitle(Set_Alarm);
@@ -210,7 +272,7 @@ public class MainActivity extends AppCompatActivity
         if(ActivityCompat.checkSelfPermission(MainActivity.this, permissionsRequired[0]) != PackageManager.PERMISSION_GRANTED
                 || ActivityCompat.checkSelfPermission(MainActivity.this, permissionsRequired[1]) != PackageManager.PERMISSION_GRANTED
                 || ActivityCompat.checkSelfPermission(MainActivity.this, permissionsRequired[2]) != PackageManager.PERMISSION_GRANTED
-               ){
+                ){
             if(ActivityCompat.shouldShowRequestPermissionRationale(MainActivity.this,permissionsRequired[0])
                     || ActivityCompat.shouldShowRequestPermissionRationale(MainActivity.this,permissionsRequired[1])
                     || ActivityCompat.shouldShowRequestPermissionRationale(MainActivity.this,permissionsRequired[2])){
@@ -380,7 +442,7 @@ public class MainActivity extends AppCompatActivity
                 String langPos= String.valueOf(spinLanguage.getSelectedItemPosition());
                 System.out.println("langPos==="+langPos);
 
-                if (langPos=="1")
+                if (langPos.equals("1"))
                 {
                     SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
                     SharedPreferences.Editor editor = preferences.edit();
@@ -396,6 +458,7 @@ public class MainActivity extends AppCompatActivity
                     editor.putString("Alarm_Section","用藥提示");
                     editor.putString("Camera","照相區");
 
+
                     editor.putString("Blood_Presure","血压");
                     editor.putString("Pulse","脉冲");
                     editor.putString("Weight","重量");
@@ -406,7 +469,9 @@ public class MainActivity extends AppCompatActivity
                     editor.putString("Time/Min","时间/每分钟");
                     editor.putString("Pound","磅");
                     editor.putString("Date","日期");
-
+                    editor.putString("btnAdd","加");
+                    editor.putString("btnShowGraph","显示图表");
+                    editor.putString("Action","行动");
                     editor.apply();
                 }
 
@@ -424,6 +489,7 @@ public class MainActivity extends AppCompatActivity
                     editor.putString("Health_data_section","Health data section");
                     editor.putString("Alarm_Section","Alarm_Section");
                     editor.putString("Camera","Camera");
+
 
                     editor.putString("Blood_Presure","Blood Presure");
                     editor.putString("Pulse","Pulse");

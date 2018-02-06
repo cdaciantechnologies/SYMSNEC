@@ -9,8 +9,10 @@ import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.os.Build;
 import android.preference.PreferenceManager;
 import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
 import android.support.v4.widget.SimpleCursorAdapter;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -49,9 +51,9 @@ public class GraphActivity extends AppCompatActivity implements View.OnClickList
     SQLController sqlcon;
     TextView tbgtxt;
     TextView tv,tvBloodSugar,tvPulse,tvBP,tvWeight,tvTimepM,tvPound;
-    TextView iv;
+    ImageView iv;
     String langPos, Medicine_Name, AM, PM, Graph, Set_Alarm, Time_is_set, Health_data_section, Alarm_Section, Camera;
-    String Blood_Presure,Pulse,Weight,Sugar,Blood_Sugar,UBP,LBP,Time_Min,Pound,Date;
+    String Blood_Presure,Pulse,Weight,Sugar,Blood_Sugar,UBP,LBP,Time_Min,Pound,Date, btnAd,btnShowGrap,Action;
     Spinner spnDieses;
 
     //    private static final int DIVIDER_SIZE = 2;
@@ -92,7 +94,13 @@ public class GraphActivity extends AppCompatActivity implements View.OnClickList
             Pound = preferences.getString("Pound", "");
             Date = preferences.getString("Date", "");
 
+            btnAd = preferences.getString("btnAdd", "");
+            btnShowGrap = preferences.getString("btnShowGraph", "");
+            Action = preferences.getString("Action", "");
 
+            /*editor.putString("btnAdd","加");
+            editor.putString("btnShowGraph","显示图表");
+            editor.putString("Action","行动");*/
 
         } catch (NullPointerException e) {
             e.printStackTrace();
@@ -102,12 +110,20 @@ public class GraphActivity extends AppCompatActivity implements View.OnClickList
         System.out.println("langPos===load==" + langPos);
         if (langPos.equals("1")) {
             tbgtxt.setText(Graph);
+            txthb.setHint(Sugar);
             tvBloodSugar.setText(Blood_Sugar);
             tvPulse.setText(Pulse);
+            txtPulse.setHint(Pulse);
             tvBP.setText(Blood_Presure);
+            txtUpperbp.setHint(UBP);
+            txtLowerbp.setHint(LBP);
+            txtcbc.setHint(Weight);
             tvWeight.setText(Weight);
             tvTimepM.setText(Time_Min);
             tvPound.setText(Pound);
+            btnAdd.setText(btnAd);
+            btnShowGraph.setText(btnShowGrap);
+
 
         } else if (langPos.equals("0")) {
             tbgtxt.setText("Add Graph Details");
@@ -157,7 +173,6 @@ public class GraphActivity extends AppCompatActivity implements View.OnClickList
         tv.setText(title);
         tv.setGravity(gravity);
         tv.setTextColor(color);
-
         tv.setTextSize(12);
         tv.setTypeface(Typeface.DEFAULT, typeface);
         tv.setPadding(5,5,5,5);
@@ -193,7 +208,7 @@ public class GraphActivity extends AppCompatActivity implements View.OnClickList
             tr.addView(getTextView(0, Pulse, Color.WHITE, Typeface.BOLD, R.drawable.bg, Gravity.CENTER_HORIZONTAL));
             tr.addView(getTextView(0, Weight, Color.WHITE, Typeface.BOLD, R.drawable.bg, Gravity.CENTER_HORIZONTAL));
             tr.addView(getTextView(0, Sugar, Color.WHITE, Typeface.BOLD, R.drawable.bg, Gravity.CENTER_HORIZONTAL));
-            tr.addView(getTextView(0, "Action", Color.WHITE, Typeface.BOLD, R.drawable.bg, Gravity.CENTER_HORIZONTAL));
+            tr.addView(getTextView(0, Action, Color.WHITE, Typeface.BOLD, R.drawable.bg, Gravity.CENTER_HORIZONTAL));
             tl.addView(tr, getTblLayoutParams());
         }
         else if (langPos.equals("0")){
@@ -219,7 +234,6 @@ public class GraphActivity extends AppCompatActivity implements View.OnClickList
             tl.addView(tr, getTblLayoutParams());
         }
 
-
         tl.setColumnCollapsed(0,true);
     }
 
@@ -229,6 +243,7 @@ public class GraphActivity extends AppCompatActivity implements View.OnClickList
         return new TableLayout.LayoutParams(
                 TableRow.LayoutParams.MATCH_PARENT,
                 TableRow.LayoutParams.WRAP_CONTENT);
+
     }
 
     private void init() {
@@ -375,6 +390,7 @@ public class GraphActivity extends AppCompatActivity implements View.OnClickList
         return false;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @SuppressLint("ResourceAsColor")
     private void BuildTable() {
 
@@ -429,7 +445,7 @@ public class GraphActivity extends AppCompatActivity implements View.OnClickList
             for (int j = 0; j < cols; j++) {
 
                 tv = new TextView(this);
-                tv.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.FILL_PARENT,
+                tv.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT,
                         TableRow.LayoutParams.WRAP_CONTENT));
                 tv.setBackgroundResource(R.drawable.cell_shape);
                 tv.setGravity(Gravity.CENTER);
@@ -438,57 +454,44 @@ public class GraphActivity extends AppCompatActivity implements View.OnClickList
                 tv.setText(c.getString(j));
                 tv.setTag(i);
 
-
-
                 row.setTag(i);
 
                 System.out.println("TV======" + tv.toString());
 
                 row.addView(tv);
 
+
+
+
+
+
             }
 
-
-            iv = new TextView(this);
+            iv = new ImageView(this);
             iv.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.FILL_PARENT,
                     TableRow.LayoutParams.FILL_PARENT));
             iv.setBackgroundResource(R.drawable.b);
-            iv.setGravity(Gravity.CENTER);
-            iv.setTextSize(14);
-            tv.setMaxWidth(20);
-            iv.getLayoutParams().width= 30;
-           /* iv.getLayoutParams().height=40;*/
-            iv.setPadding(5, 5, 5, 5);
-//            tv.setTag(i);
-
-            row.setTag(i);
-
-//            System.out.println("TV======" + tv.toString());
-
-            row.addView(iv);
+            iv.setMaxWidth(5);
+            iv.setFadingEdgeLength(10);
+            iv.setForegroundGravity(Gravity.CENTER);
+//            iv.setScaleType(ImageView.ScaleType.CENTER);
+//            iv.setMaxWidth(10);
+            iv.getLayoutParams().width= 0;
 
 
-
-
-
-
-
-
-            /*iv = new TextView(this);
+            /*iv = new ImageView(this);
             iv.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT,
                     TableRow.LayoutParams.WRAP_CONTENT));
             iv.setBackgroundResource(R.drawable.b);
-            iv.setBottom(2);
+//            iv.setBottom(2);
             //            iv.setBackgroundColor(R.color.colorPrimaryDark);
-            iv.setPadding(5, 5, 5, 5);
-//            iv.getImageMatrix();
+            iv.setPadding(1, 1, 1, 5);
+            iv.getImageMatrix();
 //                iv.setBackgroundResource(R.drawable.cell_shape);
-            *//*iv.getLayoutParams().height=14;
-            iv.getLayoutParams().width= 30;*//*
-//            iv.getLayoutParams().height=rozmiar;
-//            iv.setScaleType(ImageView.ScaleType.FIT_XY);
-            iv.setTag(i);
-            row.addView(iv);*/
+            iv.getLayoutParams().height = 40;
+            iv.getLayoutParams().width= 25;
+            iv.setTag(i);*/
+            row.addView(iv);
 
 
             c.moveToNext();

@@ -28,14 +28,7 @@ public class ScreenReceiver extends BroadcastReceiver {
             context.stopService(new Intent(context,MyService.class));
             System.exit(0);
 
-        }else if(intent.getAction().equals(Intent.ACTION_USER_PRESENT)){
-            Log.e("LOB","userpresent");
-            Log.e("LOB","wasScreenOn"+wasScreenOn);
-            String url = "http://www.stackoverflow.com";
-            Intent i = new Intent(Intent.ACTION_VIEW);
-            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            i.setData(Uri.parse(url));
-            context.startActivity(i);
+        }else {
         }
     }
 }

@@ -103,7 +103,7 @@ public class ShowGraph extends AppCompatActivity implements OnChartGestureListen
 
         btnBack.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-              startActivity(new Intent(ShowGraph.this,GraphActivity.class));
+                startActivity(new Intent(ShowGraph.this,GraphActivity.class));
             }
         });
 
@@ -230,7 +230,7 @@ public class ShowGraph extends AppCompatActivity implements OnChartGestureListen
 
         xVals.addAll(helper.xAxis);
         System.out.println("XVALS==="+xVals.toString());
-       // xVals=helper.xAxis;
+        // xVals=helper.xAxis;
       /*  xVals.add("10");
         xVals.add("20");
         xVals.add("30");
@@ -245,18 +245,24 @@ public class ShowGraph extends AppCompatActivity implements OnChartGestureListen
 
 //        yVals.addAll(0,helper.yAxis);
 
-        float val;
-        for (int i=0;i<helper.yAxis.size();i++)
-        {
-            val= Float.parseFloat(helper.yAxis.get(i));
-            yVals.add(new Entry(val, i));
-        }
+        try {
+
+
+            float val;
+            for (int i=0;i<helper.yAxis.size();i++)
+            {
+                val= Float.parseFloat(helper.yAxis.get(i));
+                yVals.add(new Entry(val, i));
+            }
         /*yVals.add(new Entry(60, 0));
         yVals.add(new Entry(48, 1));
         yVals.add(new Entry(70.5f, 2));
         yVals.add(new Entry(100, 3));
         yVals.add(new Entry(180.9f, 4));*/
-
+        }catch (NumberFormatException e)
+        {
+            e.printStackTrace();
+        }
         return yVals;
     }
 
