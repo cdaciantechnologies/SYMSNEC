@@ -340,36 +340,35 @@
             //////////
 
 
-            <ScrollView
+            <HorizontalScrollView
                 android:layout_width="fill_parent"
                 android:layout_height="match_parent"
                 android:scrollbars="horizontal|vertical"
                 android:scrollbarStyle="outsideInset"
                 android:fillViewport="true"
                 android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
                 android:layout_below="@+id/lldata">
 
-                <HorizontalScrollView
-                    android:id="@+id/horizontalView"
-                    android:layout_height="wrap_content"
-                    android:scrollbars="horizontal|vertical"
-                    android:layout_width="match_parent"
-                    android:layout_marginTop="5dip">
+                <!-- <HorizontalScrollView
+                     android:id="@+id/horizontalView"
+                     android:layout_height="wrap_content"
+                     android:scrollbars="horizontal|vertical"
+                     android:layout_width="match_parent"
+                     android:layout_marginTop="5dip">-->
 
-                    <TableLayout
-                        android:id="@+id/tableLayout1"
-                        android:layout_width="fill_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginBottom="40dp"
-                        android:stretchColumns="*"
-                        /><!--android:scrollbars="horizontal"
+                <TableLayout
+                    android:id="@+id/tableLayout1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginBottom="40dp"
+                    android:stretchColumns="*"
+                    /><!--android:scrollbars="horizontal"
                 android:gravity="center_horizontal"
                 android:shrinkColumns="*"
                 android:shrinkColumns="*"
                 android:stretchColumns="*"-->
-                </HorizontalScrollView>
-            </ScrollView>
+                <!--</HorizontalScrollView>-->
+            </HorizontalScrollView>
 
 
             <!--<ScrollView

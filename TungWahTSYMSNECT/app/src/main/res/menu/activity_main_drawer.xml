@@ -14,10 +14,10 @@
             android:id="@+id/nav_graph"
             android:icon="@drawable/graph"
             android:title="Health Data Section" />
-        <item
+       <!-- <item
             android:id="@+id/nav_manage"
             android:icon="@drawable/ic_menu_manage"
-            android:title="Change Language" />
+            android:title="Change Language" />-->
     </group>
 
    <!-- <item android:title="Communicate">

@@ -17,6 +17,7 @@ import android.util.Log;
 import android.view.MotionEvent;
 import android.view.WindowManager;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.SeekBar;
 import android.widget.Spinner;
@@ -53,8 +54,11 @@ public class ShowGraph extends AppCompatActivity implements OnChartGestureListen
     private LineChart mChart;
     ImageButton btnBack;
     Spinner spnDieses;
-    TextView tbgtxt;
-    String langPos,Medicine_Name,AM,PM,Graph,Set_Alarm,Time_is_set,Health_data_section,Alarm_Section,Camera;
+    TextView tbgtxt,tvSelectCat;
+    String SelectCategory,langPos,Medicine_Name,AM,PM,Graph,Set_Alarm,Time_is_set,Health_data_section,Alarm_Section,Camera,UpperLimit,LowerLimit;
+    String dieses_Name_Chi[] = {"上壓","下壓","血糖","體重","脈搏"};
+
+
 
 
     @Override
@@ -71,6 +75,7 @@ public class ShowGraph extends AppCompatActivity implements OnChartGestureListen
 
         btnBack=(ImageButton)findViewById(R.id.btnBack);
         tbgtxt=(TextView) findViewById(R.id.tbgtxt);
+        tvSelectCat=(TextView) findViewById(R.id.tvSelectCat);
 
 
         try {
@@ -85,6 +90,9 @@ public class ShowGraph extends AppCompatActivity implements OnChartGestureListen
             Health_data_section = preferences.getString("Health_data_section", "");
             Alarm_Section = preferences.getString("Alarm_Section", "");
             Camera = preferences.getString("Camera", "");
+            SelectCategory = preferences.getString("SelectCategory", "");
+            UpperLimit = preferences.getString("UpperLimit", "");
+            LowerLimit = preferences.getString("LowerLimit", "");
         }catch (NullPointerException e)
         {
             e.printStackTrace();
@@ -94,9 +102,15 @@ public class ShowGraph extends AppCompatActivity implements OnChartGestureListen
         System.out.println("Health_data_section===load=="+Health_data_section);
         if (langPos.equals("1")) {
             tbgtxt.setText(Health_data_section);
+            tvSelectCat.setText(SelectCategory);
+            // Application of the Array to the Spinner
+            ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(this,   android.R.layout.simple_spinner_item, dieses_Name_Chi);
+            spinnerArrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item); // The drop down view
+            spnDieses.setAdapter(spinnerArrayAdapter);
 
         }else if (langPos.equals("0")) {
             tbgtxt.setText(Health_data_section);
+            tvSelectCat.setText(SelectCategory);
         }else{
 
         }
@@ -187,13 +201,13 @@ public class ShowGraph extends AppCompatActivity implements OnChartGestureListen
         // mChart.setScaleXEnabled(true);
         // mChart.setScaleYEnabled(true);
 
-        LimitLine upper_limit = new LimitLine(130f, "Upper Limit");
+        LimitLine upper_limit = new LimitLine(130f, UpperLimit);
         upper_limit.setLineWidth(4f);
         upper_limit.enableDashedLine(10f, 10f, 0f);
         upper_limit.setLabelPosition(LimitLine.LimitLabelPosition.RIGHT_TOP);
         upper_limit.setTextSize(10f);
 
-        LimitLine lower_limit = new LimitLine(-30f, "Lower Limit");
+        LimitLine lower_limit = new LimitLine(-30f, LowerLimit);
         lower_limit.setLineWidth(4f);
         lower_limit.enableDashedLine(10f, 10f, 0f);
         lower_limit.setLabelPosition(LimitLine.LimitLabelPosition.RIGHT_BOTTOM);

@@ -185,7 +185,7 @@ public class GraphActivity extends AppCompatActivity implements View.OnClickList
     @NonNull
     private TableRow.LayoutParams getLayoutParams() {
         TableRow.LayoutParams params = new TableRow.LayoutParams(
-                TableRow.LayoutParams.MATCH_PARENT,
+                TableRow.LayoutParams.FILL_PARENT,
                 TableRow.LayoutParams.WRAP_CONTENT);
         params.setMargins(1, 0, 0, 1);
         return params;
@@ -241,7 +241,7 @@ public class GraphActivity extends AppCompatActivity implements View.OnClickList
     @NonNull
     private TableLayout.LayoutParams getTblLayoutParams() {
         return new TableLayout.LayoutParams(
-                TableRow.LayoutParams.MATCH_PARENT,
+                TableRow.LayoutParams.FILL_PARENT,
                 TableRow.LayoutParams.WRAP_CONTENT);
 
     }

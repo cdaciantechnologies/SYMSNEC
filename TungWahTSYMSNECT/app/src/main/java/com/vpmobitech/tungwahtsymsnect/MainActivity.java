@@ -15,6 +15,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
+import android.view.KeyEvent;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -59,6 +60,24 @@ public class MainActivity extends AppCompatActivity
             Manifest.permission.WRITE_EXTERNAL_STORAGE};
     private SharedPreferences permissionStatus;
     private boolean sentToSettings = false;
+
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (event.getAction() == KeyEvent.ACTION_DOWN) {
+            switch (keyCode) {
+                case KeyEvent.KEYCODE_BACK:
+                    if (webView.canGoBack()) {
+                        webView.goBack();
+                    } else {
+                        finish();
+                    }
+                    return true;
+            }
+
+        }
+        return super.onKeyDown(keyCode, event);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -137,7 +156,7 @@ public class MainActivity extends AppCompatActivity
             editor.putString("Medicine_Name","藥名");
             editor.putString("AM","上午");
             editor.putString("PM","下午");
-            editor.putString("Set_Alarm","時間設定");
+            editor.putString("Set_Alarm","用藥提示");
             editor.putString("Graph","健康指數");
             editor.putString("Time_is_set","時間已設定");
             editor.putString("Health_data_section","健康指數");
@@ -145,19 +164,22 @@ public class MainActivity extends AppCompatActivity
             editor.putString("Camera","照相區");
 
 
-            editor.putString("Blood_Presure","血压");
-            editor.putString("Pulse","脉冲");
+            editor.putString("Blood_Presure","血壓");
+            editor.putString("Pulse","脈搏");
             editor.putString("Weight","重量");
             editor.putString("Sugar","血糖");
             editor.putString("Blood_Sugar","血糖");
-            editor.putString("UBP","上部压力");
-            editor.putString("LBP","较低的压力");
-            editor.putString("Time/Min","时间/每分钟");
+            editor.putString("UBP","上壓");
+            editor.putString("LBP","下壓");
+            editor.putString("Time/Min","時間/每分鐘");
             editor.putString("Pound","磅");
             editor.putString("Date","日期");
             editor.putString("btnAdd","加");
-            editor.putString("btnShowGraph","显示图表");
-            editor.putString("Action","行动");
+            editor.putString("btnShowGraph","顯示圖表");
+            editor.putString("Action","刪除");
+            editor.putString("SelectCategory","選擇類別");
+            editor.putString("UpperLimit","上限");
+            editor.putString("LowerLimit","下限 ");
             editor.apply();
 
             SharedPreferences preferences2 = PreferenceManager.getDefaultSharedPreferences(this);
@@ -187,6 +209,7 @@ public class MainActivity extends AppCompatActivity
             System.out.println("Alarm_Section"+Alarm_Section);
             System.out.println("Camera"+Camera);
 
+
         }else if (langPos.equals("0")) {
             nav_camera.setTitle(Camera);
             nav_alarm.setTitle(Set_Alarm);
@@ -208,11 +231,11 @@ public class MainActivity extends AppCompatActivity
         }
     }*/
 
-    @Override
+    /*@Override
     public void onBackPressed() {
         AlertShow();
 
-    }
+    }*/
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -229,9 +252,9 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        /*if (id == R.id.action_settings) {
             return true;
-        }
+        }*/
 
         return super.onOptionsItemSelected(item);
     }
@@ -253,10 +276,10 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_graph) {
             startActivity(new Intent(MainActivity.this,GraphActivity.class));
             finish();
-        } else if (id == R.id.nav_manage) {
+        }/* else if (id == R.id.nav_manage) {
             ShowLangDialog();
 
-        } /*else if (id == R.id.nav_share) {
+        } else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_send) {
 
@@ -451,7 +474,7 @@ public class MainActivity extends AppCompatActivity
                     editor.putString("Medicine_Name","藥名");
                     editor.putString("AM","上午");
                     editor.putString("PM","下午");
-                    editor.putString("Set_Alarm","時間設定");
+                    editor.putString("Set_Alarm","用藥提示");
                     editor.putString("Graph","健康指數");
                     editor.putString("Time_is_set","時間已設定");
                     editor.putString("Health_data_section","健康指數");
@@ -459,19 +482,22 @@ public class MainActivity extends AppCompatActivity
                     editor.putString("Camera","照相區");
 
 
-                    editor.putString("Blood_Presure","血压");
-                    editor.putString("Pulse","脉冲");
+                    editor.putString("Blood_Presure","血壓");
+                    editor.putString("Pulse","脈搏");
                     editor.putString("Weight","重量");
                     editor.putString("Sugar","血糖");
                     editor.putString("Blood_Sugar","血糖");
-                    editor.putString("UBP","上部压力");
-                    editor.putString("LBP","较低的压力");
-                    editor.putString("Time/Min","时间/每分钟");
+                    editor.putString("UBP","上壓");
+                    editor.putString("LBP","下壓");
+                    editor.putString("Time/Min","時間/每分鐘");
                     editor.putString("Pound","磅");
                     editor.putString("Date","日期");
                     editor.putString("btnAdd","加");
-                    editor.putString("btnShowGraph","显示图表");
-                    editor.putString("Action","行动");
+                    editor.putString("btnShowGraph","顯示圖表");
+                    editor.putString("Action","刪除");
+                    editor.putString("SelectCategory","選擇類別");
+                    editor.putString("UpperLimit","上限");
+                    editor.putString("LowerLimit","下限 ");
                     editor.apply();
                 }
 
