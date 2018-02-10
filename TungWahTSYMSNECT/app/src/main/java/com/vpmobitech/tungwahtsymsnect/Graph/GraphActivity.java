@@ -467,16 +467,24 @@ public class GraphActivity extends AppCompatActivity implements View.OnClickList
 
             }
 
+
             iv = new ImageView(this);
-            iv.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.FILL_PARENT,
+          /*  iv.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT,
+                    TableRow.LayoutParams.WRAP_CONTENT));  */
+            iv.setLayoutParams(new TableRow.LayoutParams(15,
                     TableRow.LayoutParams.FILL_PARENT));
             iv.setBackgroundResource(R.drawable.b);
-            iv.setMaxWidth(5);
-            iv.setFadingEdgeLength(10);
-            iv.setForegroundGravity(Gravity.CENTER);
-//            iv.setScaleType(ImageView.ScaleType.CENTER);
+            //iv.setMaxWidth(5);
+//            iv.setFadingEdgeLength(10);
+         //   iv.setForegroundGravity(Gravity.CENTER);
+
+    /*        iv.setForegroundGravity(Gravity.CENTER_HORIZONTAL);
+            iv.setForegroundGravity(Gravity.CENTER_VERTICAL);*/
+            //iv.setScaleType(ImageView.ScaleType.CENTER_INSIDE);
+            iv.setScaleType(ImageView.ScaleType.FIT_XY);
 //            iv.setMaxWidth(10);
-            iv.getLayoutParams().width= 0;
+            iv.getLayoutParams().width= 15;
+//            iv.getLayoutParams().height= 32;
 
 
             /*iv = new ImageView(this);

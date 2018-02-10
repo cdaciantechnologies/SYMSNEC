@@ -58,7 +58,7 @@ public class ShowGraph extends AppCompatActivity implements OnChartGestureListen
     String SelectCategory,langPos,Medicine_Name,AM,PM,Graph,Set_Alarm,Time_is_set,Health_data_section,Alarm_Section,Camera,UpperLimit,LowerLimit;
     String dieses_Name_Chi[] = {"上壓","下壓","血糖","體重","脈搏"};
 
-
+    MotionEvent me;
 
 
     @Override
@@ -129,10 +129,14 @@ public class ShowGraph extends AppCompatActivity implements OnChartGestureListen
                 if (pos==0)
                 {
                     helper.getdataGrph("upper_bp");
+
                 }
-                if (pos==1)
+               else if (pos==1)
                 {
                     helper.getdataGrph("lower_bp");
+
+//                    mChart.setOnChartGesture/*Listener(this);
+//                    mChart.setTouchEnabled(true);*/
                 }
                 else if(pos==2)
                 {
@@ -152,11 +156,20 @@ public class ShowGraph extends AppCompatActivity implements OnChartGestureListen
                 System.out.println("Arraylistof Y=="+helper.xDate.toString());
 
                 // add data
-
-                setData();
                 mChart.setOnChartGestureListener(ShowGraph.this);
                 mChart.getLineData();
 //                mChart.setOnTouchListener(true);
+
+                mChart.setDescription("Demo Line Chart");
+                mChart.setNoDataTextDescription("You need to provide data for the chart.");
+
+                // enable touch gestures
+                mChart.setTouchEnabled(true);
+
+                // enable scaling and dragging
+                mChart.setDragEnabled(true);
+                mChart.setScaleEnabled(true);
+                setData();
 
             }
 
