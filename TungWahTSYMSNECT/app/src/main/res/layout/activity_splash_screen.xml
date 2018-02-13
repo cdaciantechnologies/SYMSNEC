@@ -4,9 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@mipmap/splash_screen"
+    android:background="@mipmap/sp_new_o"
     tools:context="com.vpmobitech.tungwahtsymsnect.SplashScreen">
 
-
+   <!-- <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_contenssssst"
+        android:layout_centerHorizontal="true"
+        android:background="@mipmap/sp_new_o"
+        android:layout_centerVertical="true"/>-->
 
 </RelativeLayout>

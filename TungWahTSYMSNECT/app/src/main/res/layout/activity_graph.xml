@@ -57,25 +57,55 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="0.6"
-                        android:singleLine="true"
-                        android:id="@+id/tvBloodSugar"
-                        android:text="Bload Sugar"/>
+                        android:id="@+id/tvBP"
+                        android:text="Blood Presure"/>
 
                     <EditText
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="0.8"
+                        android:singleLine="true"
                         android:inputType="numberDecimal"
-                        android:id="@+id/txthb"
-                        android:hint="Enter Sugar"/>
+                        android:id="@+id/txtUpperbp"
+                        android:hint="Enter Upper BP"/>
+
                     <TextView
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="0.5"
                         android:singleLine="true"
-                        android:text="MML/L"/>
+                        android:text="mmHg"/>
 
                 </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.6"/>
+
+                    <EditText
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.8"
+                        android:singleLine="true"
+                        android:inputType="numberDecimal"
+                        android:id="@+id/txtLowerbp"
+                        android:hint="Enter Lower BP"/>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.5"
+                        android:singleLine="true"
+                        android:text="mmHg"/>
+
+                </LinearLayout>
+
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -109,67 +139,6 @@
 
                 </LinearLayout>
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="10dp"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.6"
-                        android:id="@+id/tvBP"
-                        android:text="Blood Presure"/>
-
-                    <EditText
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.8"
-                        android:singleLine="true"
-                        android:inputType="numberDecimal"
-                        android:id="@+id/txtUpperbp"
-                        android:hint="Enter Upper BP"/>
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.5"
-                        android:singleLine="true"
-                        android:text="MMLHG"/>
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="10dp"
-                    android:orientation="horizontal">
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.6"/>
-
-                    <EditText
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.8"
-                        android:singleLine="true"
-                        android:inputType="numberDecimal"
-                        android:id="@+id/txtLowerbp"
-                        android:hint="Enter Lower BP"/>
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.5"
-                        android:singleLine="true"
-                        android:text="MMLHG"/>
-
-                </LinearLayout>
-
-
-
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -202,6 +171,46 @@
                         android:text="Pound"/>
 
                 </LinearLayout>
+
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.6"
+                        android:singleLine="true"
+                        android:id="@+id/tvBloodSugar"
+                        android:text="Bload Sugar"/>
+
+                    <EditText
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.8"
+                        android:inputType="numberDecimal"
+                        android:id="@+id/txthb"
+                        android:hint="Enter Sugar"/>
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.5"
+                        android:singleLine="true"
+                        android:text="mmol/L"/>
+
+                </LinearLayout>
+
+
+
+
+
+
+
+
 
 
 
@@ -361,8 +370,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginBottom="40dp"
-                    android:stretchColumns="*"
-                    /><!--android:scrollbars="horizontal"
+
+                    /><!--android:scrollbars="horizontal"android:stretchColumns="*"
                 android:gravity="center_horizontal"
                 android:shrinkColumns="*"
                 android:shrinkColumns="*"
