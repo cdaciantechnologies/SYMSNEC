@@ -141,7 +141,7 @@ public class Camera extends AppCompatActivity {
 //                Bitmap bitmapFore = ((BitmapDrawable) draw_for).getBitmap();
 //                Bitmap bitmapBack = ((BitmapDrawable) draw_back).getBitmap();
 
-                Bitmap scaledBitmapFore = Bitmap.createScaledBitmap(bitmapFore, share.getWidth(), share.getHeight(), true);
+                Bitmap scaledBitmapFore = Bitmap.createScaledBitmap(bitmapFore, share.getWidth(), share.getHeight()-18, true);
                 Bitmap scaledBitmapBack = Bitmap.createScaledBitmap(bitmapBack, imageView.getWidth(), imageView.getHeight(), true);
 
                 Bitmap combineImages = overlay(scaledBitmapBack, scaledBitmapFore);
