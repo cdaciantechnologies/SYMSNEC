@@ -370,8 +370,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginBottom="40dp"
-                    android:stretchColumns="*"
-                    /><!--android:scrollbars="horizontal"
+
+                    /><!--android:scrollbars="horizontal"android:stretchColumns="*"
                 android:gravity="center_horizontal"
                 android:shrinkColumns="*"
                 android:shrinkColumns="*"

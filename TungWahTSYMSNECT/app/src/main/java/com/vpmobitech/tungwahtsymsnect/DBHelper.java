@@ -38,6 +38,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String WEIGHT="weight";
     public static final String PULSE="pulse";
     public static final String DATE="date";
+    public static final String DELETE="del";
 
     /*public static final String BP="upper_bp";
     public static final String HB="hb";
@@ -64,7 +65,7 @@ public class DBHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL("create table Reminders(SrNo INTEGER PRIMARY KEY AUTOINCREMENT,med_name varchar(20),rem_time varchar(20),alarmID varchar(20))");
-        db.execSQL("create table Graph(_id integer PRIMARY KEY AUTOINCREMENT,upper_bp varchar(20),lower_bp varchar(20),sugar varchar(20),weight varchar(20),pulse varchar(20),date varchar(20))");
+        db.execSQL("create table Graph(_id integer PRIMARY KEY AUTOINCREMENT,upper_bp varchar(20),lower_bp varchar(20),sugar varchar(20),weight varchar(20),pulse varchar(20),date varchar(20),del BLOB)");
     }
 
     @Override

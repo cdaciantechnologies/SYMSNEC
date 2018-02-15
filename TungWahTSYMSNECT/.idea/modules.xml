@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/../../out/TungWahTSYMSNECT/TungWahTSYMSNECT.iml" filepath="$PROJECT_DIR$/../../out/TungWahTSYMSNECT/TungWahTSYMSNECT.iml" />
-      <module fileurl="file://$PROJECT_DIR$/../../out/TungWahTSYMSNECT/app/app.iml" filepath="$PROJECT_DIR$/../../out/TungWahTSYMSNECT/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/TungWahTSYMSNECT.iml" filepath="$PROJECT_DIR$/TungWahTSYMSNECT.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>
 </project>

@@ -43,7 +43,7 @@ public class SQLController {
 	public Cursor readEntry() {
 		// TODO Auto-generated method stub
 		String[] allColumns = new String[] {DBHelper.I_ID,DBHelper.DATE, DBHelper.UPPER_BP,DBHelper.LOWER_BP,
-				DBHelper.PULSE,DBHelper.WEIGHT,DBHelper.SUGAR };
+				DBHelper.PULSE,DBHelper.WEIGHT,DBHelper.SUGAR };//,DBHelper.DELETE
 
 		Cursor c = database.query(DBHelper.TABLE_GRAPH, allColumns, null, null, null,
 				null, null);

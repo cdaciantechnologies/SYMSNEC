@@ -266,16 +266,16 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_camera) {
-            Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
-            startActivity(intent);
+            startActivity(new Intent(MainActivity.this,Camera.class));
+
         } else if (id == R.id.nav_alarm) {
              /*navigationView.getMenu().getItem(0).setChecked(true);
             onNavigationItemSelected(navigationView.getMenu().getItem(0));*/
             startActivity(new Intent(MainActivity.this,SetAlarm.class));
-            finish();
+
         } else if (id == R.id.nav_graph) {
             startActivity(new Intent(MainActivity.this,GraphActivity.class));
-            finish();
+
         }/* else if (id == R.id.nav_manage) {
             ShowLangDialog();
 

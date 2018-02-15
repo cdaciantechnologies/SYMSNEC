@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">SYMSNEC</string>
+    <string name="app_name">東華三院邱木城長者鄰舍中心</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -17,11 +17,16 @@
 
     <string-array name="dieses_Name_Chi">
         <!--<item>BP</item>-->
-        <item>上壓</item><!--Upper BP-->上壓
-        <item>下壓</item><!--Lower BP-->下壓
-        <item>血糖</item><!--Sugar-->血糖
-        <item>體重</item><!--Weight-->體重
-        <item>脈搏</item><!--Pulse-->脈搏
+        <item>上壓</item><!--Upper BP-->
+        上壓
+        <item>下壓</item><!--Lower BP-->
+        下壓
+        <item>血糖</item><!--Sugar-->
+        血糖
+        <item>體重</item><!--Weight-->
+        體重
+        <item>脈搏</item><!--Pulse-->
+        脈搏
     </string-array>
 
 
