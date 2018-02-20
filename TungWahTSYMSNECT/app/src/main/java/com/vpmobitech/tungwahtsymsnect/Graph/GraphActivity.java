@@ -310,14 +310,57 @@ public class GraphActivity extends AppCompatActivity implements View.OnClickList
         // Add Record with help of ContentValues and DBHelper class object
         ContentValues val = new ContentValues();
 
+        String UBP=txtUpperbp.getText().toString();
+        String LBP=txtLowerbp.getText().toString();
+        String SUGAR=txthb.getText().toString();
+        String WEIGHT=txtcbc.getText().toString();
+        String PULSE=txtPulse.getText().toString();
 
-        val.put(DBHelper.UPPER_BP, txtUpperbp.getText().toString());
-        val.put(DBHelper.LOWER_BP, txtLowerbp.getText().toString());
-        val.put(DBHelper.SUGAR, txthb.getText().toString());
-        val.put(DBHelper.WEIGHT, txtcbc.getText().toString());
-        val.put(DBHelper.PULSE, txtPulse.getText().toString());
+
+
+        if(UBP.isEmpty()){
+            UBP="0";
+        }
+        if(LBP.isEmpty()){
+            LBP="0";
+        }
+        if(SUGAR.isEmpty()){
+            SUGAR="0";
+        }
+        if(WEIGHT.isEmpty()){
+            WEIGHT="0";
+        }
+        if(PULSE.isEmpty()){
+            PULSE="0";
+        }
+
+
+        val.put(DBHelper.UPPER_BP, UBP);
+        val.put(DBHelper.LOWER_BP, LBP);
+        val.put(DBHelper.SUGAR, SUGAR);
+        val.put(DBHelper.WEIGHT, WEIGHT);
+        val.put(DBHelper.PULSE, PULSE);
         val.put(DBHelper.DATE, date);
 
+
+      /*  if (!UBP.isEmpty()||!LBP.isEmpty()) {
+
+
+        }
+        else if(UBP.isEmpty()||LBP.isEmpty()) {
+                UBP="0";
+                LBP="0";
+                val.put(DBHelper.UPPER_BP, UBP);
+                val.put(DBHelper.LOWER_BP, LBP);
+                val.put(DBHelper.SUGAR, SUGAR);
+                val.put(DBHelper.WEIGHT, WEIGHT);
+                val.put(DBHelper.PULSE, PULSE);
+                val.put(DBHelper.DATE, date);
+            }
+            else{
+
+        }
+*/
 
         db = helper.getWritableDatabase();
         db.insert(DBHelper.TABLE_GRAPH, null, val);

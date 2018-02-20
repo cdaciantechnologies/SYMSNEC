@@ -137,7 +137,6 @@ public class Camera extends AppCompatActivity {
 
 //                BitmapDrawable draw = (BitmapDrawable) imageView.getDrawable();
 //                Bitmap bitmap = draw.getBitmap();
-//
 //                Bitmap bitmapFore = ((BitmapDrawable) draw_for).getBitmap();
 //                Bitmap bitmapBack = ((BitmapDrawable) draw_back).getBitmap();
 
@@ -180,6 +179,7 @@ public class Camera extends AppCompatActivity {
                 }
 
                 Toast.makeText(Camera.this, "成功儲存至相簿", Toast.LENGTH_SHORT).show();
+                    galleryAddPic();
                 //finish();
 
 
@@ -191,6 +191,15 @@ public class Camera extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void galleryAddPic() {
+        System.out.println("Gallary Refreshed...");
+        Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+        File f = new File(mCurrentPhotoPath);
+        Uri contentUri = Uri.fromFile(f);
+        mediaScanIntent.setData(contentUri);
+        this.sendBroadcast(mediaScanIntent);
     }
 
     private void startCmaera() {
@@ -214,9 +223,6 @@ public class Camera extends AppCompatActivity {
             cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
             startActivityForResult(cameraIntent, CAMERA_REQUEST);
         }
-
-
-
     }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {

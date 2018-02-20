@@ -266,7 +266,8 @@ public class MainActivity extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.nav_camera) {
-            startActivity(new Intent(MainActivity.this,Camera.class));
+            OpenCamera();
+//            startActivity(new Intent(MainActivity.this,Camera.class));
 
         } else if (id == R.id.nav_alarm) {
              /*navigationView.getMenu().getItem(0).setChecked(true);
@@ -302,7 +303,7 @@ public class MainActivity extends AppCompatActivity
                 //Show Information about why you need the permission
                 AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
                 builder.setTitle("Need Multiple Permissions");
-                builder.setMessage("This app needs Camera and Location permissions.");
+                builder.setMessage("This app needs Camera and Storage permissions.");
                 builder.setPositiveButton("Grant", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -322,7 +323,7 @@ public class MainActivity extends AppCompatActivity
                 // Redirect to Settings after showing Information about why you need the permission
                 AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
                 builder.setTitle("Need Multiple Permissions");
-                builder.setMessage("This app needs Camera and Location permissions.");
+                builder.setMessage("This app needs Camera and Storage permissions.");
                 builder.setPositiveButton("Grant", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -332,7 +333,7 @@ public class MainActivity extends AppCompatActivity
                         Uri uri = Uri.fromParts("package", getPackageName(), null);
                         intent.setData(uri);
                         startActivityForResult(intent, REQUEST_PERMISSION_SETTING);
-                        Toast.makeText(getBaseContext(), "Go to Permissions to Grant  Camera and Location", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getBaseContext(), "Go to Permissions to Grant  Camera and Storage", Toast.LENGTH_LONG).show();
                     }
                 });
                 builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -384,7 +385,7 @@ public class MainActivity extends AppCompatActivity
                 //txtPermissions.setText("Permissions Required");
                 AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
                 builder.setTitle("Need Multiple Permissions");
-                builder.setMessage("This app needs Camera and Location permissions.");
+                builder.setMessage("This app needs Camera and Storage permissions.");
                 builder.setPositiveButton("Grant", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -572,8 +573,21 @@ public class MainActivity extends AppCompatActivity
 
 
         // Showing Alert Message
+
         alertDialog.show();
 
+    }
+
+
+    public void OpenCamera()
+    {
+        if(ActivityCompat.checkSelfPermission(MainActivity.this, permissionsRequired[0]) != PackageManager.PERMISSION_GRANTED)
+        {
+            LocationPermission();
+        }
+        else {
+            startActivity(new Intent(MainActivity.this,Camera.class));
+        }
     }
 
 }

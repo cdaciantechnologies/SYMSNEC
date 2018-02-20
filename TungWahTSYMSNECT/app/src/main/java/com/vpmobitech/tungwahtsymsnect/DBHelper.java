@@ -46,21 +46,21 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String DATE="date";*/
 
     // for internal db
-   /* public DBHelper(Context context) {
+    public DBHelper(Context context) {
         super(context, DATABASE, null, VERSION);
-    }*/
+    }
 
 
    public ArrayList<String> xDate;
    public ArrayList<String> xAxis;
    public ArrayList<String> yAxis;
     // for external db
-    public DBHelper(final Context context)
+   /* public DBHelper(final Context context)
     {
         super(context, Environment.getExternalStorageDirectory()
                 + File.separator + "Tung"
                 + File.separator + DATABASE, null, VERSION);
-    }
+    }*/
 
     @Override
     public void onCreate(SQLiteDatabase db) {
