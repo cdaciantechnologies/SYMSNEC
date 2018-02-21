@@ -81,7 +81,7 @@ public class GraphActivity extends AppCompatActivity implements View.OnClickList
             Time_is_set = preferences.getString("Time_is_set", "");
             Health_data_section = preferences.getString("Health_data_section", "");
             Alarm_Section = preferences.getString("Alarm_Section", "");
-            Camera = preferences.getString("Camera", "");
+            Camera = preferences.getString("CameraActivity", "");
 
 
             Blood_Presure = preferences.getString("Blood_Presure", "");
@@ -310,20 +310,63 @@ public class GraphActivity extends AppCompatActivity implements View.OnClickList
         // Add Record with help of ContentValues and DBHelper class object
         ContentValues val = new ContentValues();
 
+        String UBP=txtUpperbp.getText().toString();
+        String LBP=txtLowerbp.getText().toString();
+        String SUGAR=txthb.getText().toString();
+        String WEIGHT=txtcbc.getText().toString();
+        String PULSE=txtPulse.getText().toString();
 
-        val.put(DBHelper.UPPER_BP, txtUpperbp.getText().toString());
-        val.put(DBHelper.LOWER_BP, txtLowerbp.getText().toString());
-        val.put(DBHelper.SUGAR, txthb.getText().toString());
-        val.put(DBHelper.WEIGHT, txtcbc.getText().toString());
-        val.put(DBHelper.PULSE, txtPulse.getText().toString());
+
+
+        if(UBP.isEmpty()){
+            UBP="0";
+        }
+        if(LBP.isEmpty()){
+            LBP="0";
+        }
+        if(SUGAR.isEmpty()){
+            SUGAR="0";
+        }
+        if(WEIGHT.isEmpty()){
+            WEIGHT="0";
+        }
+        if(PULSE.isEmpty()){
+            PULSE="0";
+        }
+
+
+        val.put(DBHelper.UPPER_BP, UBP);
+        val.put(DBHelper.LOWER_BP, LBP);
+        val.put(DBHelper.SUGAR, SUGAR);
+        val.put(DBHelper.WEIGHT, WEIGHT);
+        val.put(DBHelper.PULSE, PULSE);
         val.put(DBHelper.DATE, date);
 
+
+      /*  if (!UBP.isEmpty()||!LBP.isEmpty()) {
+
+
+        }
+        else if(UBP.isEmpty()||LBP.isEmpty()) {
+                UBP="0";
+                LBP="0";
+                val.put(DBHelper.UPPER_BP, UBP);
+                val.put(DBHelper.LOWER_BP, LBP);
+                val.put(DBHelper.SUGAR, SUGAR);
+                val.put(DBHelper.WEIGHT, WEIGHT);
+                val.put(DBHelper.PULSE, PULSE);
+                val.put(DBHelper.DATE, date);
+            }
+            else{
+
+        }
+*/
 
         db = helper.getWritableDatabase();
         db.insert(DBHelper.TABLE_GRAPH, null, val);
         db.close();
 
-        Toast.makeText(this, "Record Successfully Added in IF Vaccin Chart local DB", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "已成功添加資料到數據庫", Toast.LENGTH_LONG).show();
 
         txtUpperbp.setText("");
         txtLowerbp.setText("");
@@ -505,26 +548,25 @@ public class GraphActivity extends AppCompatActivity implements View.OnClickList
 
     public void show_dialog(final String date) {
 
-        AlertDialog alertDialog = new AlertDialog.Builder(
-                GraphActivity.this).create();
+        AlertDialog alertDialog = new AlertDialog.Builder(GraphActivity.this).create();
 
         // Setting Dialog Title
-        alertDialog.setTitle("Delete Record");
+        alertDialog.setTitle(" 刪除紀錄");
 
         // Setting Dialog Message
-        alertDialog.setMessage("You want to delete record?");
+        alertDialog.setMessage("你確定刪除紀錄?");
 
         // Setting Icon to Dialog
         alertDialog.setIcon(R.drawable.app_launcher);
 
         // Setting OK Button
-        alertDialog.setButton("OK", new DialogInterface.OnClickListener() {
+        alertDialog.setButton("確定", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 // Write your code here to execute after dialog closed
 
                 DeleteRecord(date);
 
-                Toast.makeText(getApplicationContext(), "You clicked on OK", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "你已點撃確定", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -544,7 +586,7 @@ public class GraphActivity extends AppCompatActivity implements View.OnClickList
         db.delete(helper.TABLE_GRAPH, whereClause, whereArgs);
         db.close();
 
-        Toast.makeText(GraphActivity.this,"Record Deleted Succefully",Toast.LENGTH_SHORT).show();
+        Toast.makeText(GraphActivity.this,"紀錄已成功刪除",Toast.LENGTH_SHORT).show();
         startActivity(new Intent(GraphActivity.this,GraphActivity.class));
 
 

@@ -56,7 +56,7 @@ public class ShowGraph extends AppCompatActivity implements OnChartGestureListen
     Spinner spnDieses;
     TextView tbgtxt,tvSelectCat;
     String SelectCategory,langPos,Medicine_Name,AM,PM,Graph,Set_Alarm,Time_is_set,Health_data_section,Alarm_Section,Camera,UpperLimit,LowerLimit;
-    String dieses_Name_Chi[] = {"1 上壓","2 下壓","3 血糖","4 體重","5 脈搏"};
+    String dieses_Name_Chi[] = {"1 上壓","2 下壓","3 脈搏","4 體重","5 血糖"};
 
     MotionEvent me;
 
@@ -89,7 +89,7 @@ public class ShowGraph extends AppCompatActivity implements OnChartGestureListen
             Time_is_set = preferences.getString("Time_is_set", "");
             Health_data_section = preferences.getString("Health_data_section", "");
             Alarm_Section = preferences.getString("Alarm_Section", "");
-            Camera = preferences.getString("Camera", "");
+            Camera = preferences.getString("CameraActivity", "");
             SelectCategory = preferences.getString("SelectCategory", "");
             UpperLimit = preferences.getString("UpperLimit", "");
             LowerLimit = preferences.getString("LowerLimit", "");
@@ -128,11 +128,15 @@ public class ShowGraph extends AppCompatActivity implements OnChartGestureListen
 
                 SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(ShowGraph.this);
                 SharedPreferences.Editor editor = preferences.edit();
-
+                YAxis leftAxis = mChart.getAxisLeft();
+                leftAxis.removeAllLimitLines();
 
                 if (pos==0)
                 {
                     helper.getdataGrph("upper_bp");
+
+                    leftAxis.setAxisMaxValue(270f);
+                    leftAxis.setAxisMinValue(0f);
                     onChartSingleTapped(me);
 
                 }
@@ -140,27 +144,35 @@ public class ShowGraph extends AppCompatActivity implements OnChartGestureListen
                 {
                     helper.getdataGrph("lower_bp");
 
+                    leftAxis.setAxisMaxValue(270f);
+                    leftAxis.setAxisMinValue(0f);
+
                     onChartSingleTapped(me);
 
-//                    mChart.setOnChartGesture/*Listener(this);
-//                    mChart.setTouchEnabled(true);*/
+
                 }
-                else if(pos==2)
+                else if(pos==4)
                 {
                     helper.getdataGrph("sugar");
 
+
+                    leftAxis.setAxisMaxValue(30f);
+                    leftAxis.setAxisMinValue(0f);
                     onChartSingleTapped(me);
                 }
                 else if(pos==3)
                 {
                     helper.getdataGrph("weight");
                     onChartSingleTapped(me);
+                    leftAxis.setAxisMaxValue(270f);
+                    leftAxis.setAxisMinValue(0f);
                 }
-                else if(pos==4)
+                else if(pos==2)
                 {
                     helper.getdataGrph("pulse");
-                    //mChart.notifyDataSetChanged();
-                   // mChart.invalidate();
+                    leftAxis.setAxisMaxValue(150f);
+                    leftAxis.setAxisMinValue(0f);
+
                 }
 
                 System.out.println("Arraylistof X=="+helper.xAxis.toString());
@@ -172,8 +184,8 @@ public class ShowGraph extends AppCompatActivity implements OnChartGestureListen
 
 //                mChart.setOnTouchListener(true);
                 onChartSingleTapped(me);
-                mChart.setDescription("Demo Line Chart");
-                mChart.setNoDataTextDescription("You need to provide data for the chart.");
+//                mChart.setDescription("Demo Line Chart");
+//                mChart.setNoDataTextDescription("You need to provide data for the chart.");
 
                /* // enable touch gestures
                 mChart.setTouchEnabled(true);
@@ -220,8 +232,8 @@ public class ShowGraph extends AppCompatActivity implements OnChartGestureListen
         l.setForm(Legend.LegendForm.LINE);
 
         // no description text
-        mChart.setDescription("Demo Line Chart");
-        mChart.setNoDataTextDescription("You need to provide data for the chart.");
+        mChart.setDescription("");
+//        mChart.setNoDataTextDescription("You need to provide data for the chart.");
 
         // enable touch gestures
         mChart.setTouchEnabled(true);
@@ -248,8 +260,20 @@ public class ShowGraph extends AppCompatActivity implements OnChartGestureListen
         leftAxis.removeAllLimitLines(); // reset all limit lines to avoid overlapping lines
         /*leftAxis.addLimitLine(upper_limit);
         leftAxis.addLimitLine(lower_limit);*/
-        leftAxis.setAxisMaxValue(220f);
-        leftAxis.setAxisMinValue(-50f);
+
+
+
+        /*if(spnDieses.getSelectedItemPosition()==0) {
+            leftAxis.setAxisMaxValue(270f);
+            leftAxis.setAxisMinValue(0f);
+        }
+        else if(spnDieses.getSelectedItemPosition()==2)
+        {
+            leftAxis.setAxisMaxValue(30f);
+            leftAxis.setAxisMinValue(0f);
+        }*/
+
+
         //leftAxis.setYOffset(20f);
         leftAxis.enableGridDashedLine(10f, 10f, 0f);
         leftAxis.setDrawZeroLine(false);
@@ -319,7 +343,7 @@ public class ShowGraph extends AppCompatActivity implements OnChartGestureListen
         LineDataSet set1;
 
         // create a dataset and give it a type
-        set1 = new LineDataSet(yVals, "DataSet 1");
+        set1 = new LineDataSet(yVals, "");
 
         set1.setFillAlpha(110);
         // set1.setFillColor(Color.RED);
@@ -332,8 +356,8 @@ public class ShowGraph extends AppCompatActivity implements OnChartGestureListen
         set1.setLineWidth(1f);
         set1.setCircleRadius(3f);
         set1.setDrawCircleHole(false);
-        set1.setValueTextSize(9f);
-        set1.setDrawFilled(true);
+        set1.setValueTextSize(15f);
+        set1.setDrawFilled(false);
 
 
 

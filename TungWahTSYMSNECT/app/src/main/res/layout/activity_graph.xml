@@ -95,6 +95,7 @@
                         android:singleLine="true"
                         android:inputType="numberDecimal"
                         android:id="@+id/txtLowerbp"
+
                         android:hint="Enter Lower BP"/>
 
                     <TextView

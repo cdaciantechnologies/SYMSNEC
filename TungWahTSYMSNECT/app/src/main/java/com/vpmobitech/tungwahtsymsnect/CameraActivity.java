@@ -1,8 +1,10 @@
 package com.vpmobitech.tungwahtsymsnect;
 
+import android.content.ContentValues;
+import android.content.Context;
 import android.content.pm.ActivityInfo;
-import android.content.res.Configuration;
 import android.graphics.BitmapFactory;
+import android.graphics.Camera;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.v4.content.FileProvider;
@@ -13,12 +15,9 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.Matrix;
 import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -32,29 +31,32 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.Random;
 
 import static android.os.Environment.getExternalStoragePublicDirectory;
 
-public class Camera extends AppCompatActivity {
+
+public class CameraActivity extends AppCompatActivity {
 
     private static final int CAMERA_REQUEST = 1888;
-    private ImageView imageView,imageView2,imageView3;
+    private ImageView imageView, imageView2, imageView3;
     FrameLayout share;
     ImageView btSave, btnClose, backBtn;
 
-    String  mCurrentPhotoPath;
+    String mCurrentPhotoPath;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_camera);
-        this.imageView = (ImageView)this.findViewById(R.id.imageView);
-        this.imageView2 = (ImageView)this.findViewById(R.id.imageView2);
-        this.imageView3 = (ImageView)this.findViewById(R.id.imageView3);
+
+        MyApplication.setContext(this);
+        this.imageView = (ImageView) this.findViewById(R.id.imageView);
+        this.imageView2 = (ImageView) this.findViewById(R.id.imageView2);
+        this.imageView3 = (ImageView) this.findViewById(R.id.imageView3);
         this.share = (FrameLayout) this.findViewById(R.id.share);
         Button photoButton = (Button) this.findViewById(R.id.button1);
-       // Button btnSave = (Button) this.findViewById(R.id.btnSave);
+        // Button btnSave = (Button) this.findViewById(R.id.btnSave);
         btSave = (ImageView) this.findViewById(R.id.save_tick);
         btnClose = (ImageView) this.findViewById(R.id.close);
         backBtn = (ImageView) this.findViewById(R.id.back);
@@ -84,7 +86,7 @@ public class Camera extends AppCompatActivity {
 
             @Override
             public void onClick(View v) {
-                 startCmaera();
+                startCmaera();
                 Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
                 startActivityForResult(cameraIntent, CAMERA_REQUEST);
             }
@@ -117,79 +119,91 @@ public class Camera extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-
-
 //                Bitmap bitmap = null;
 
 //                viewToBitmap(v);
                 BitmapDrawable draw_for = (BitmapDrawable) share.getForeground();
                 BitmapDrawable draw_back = (BitmapDrawable) imageView.getDrawable();
 
-                if(draw_for!=null && draw_back!=null )
-                {
+                if (draw_for != null && draw_back != null) {
                     btSave.setVisibility(View.GONE);
                     btnClose.setVisibility(View.GONE);
                     imageView2.setVisibility(View.GONE);
                     imageView3.setVisibility(View.GONE);
 
-                Bitmap bitmapFore = draw_for.getBitmap();
-                Bitmap bitmapBack = draw_back.getBitmap();
+                    Bitmap bitmapFore = draw_for.getBitmap();
+                    Bitmap bitmapBack = draw_back.getBitmap();
 
 //                BitmapDrawable draw = (BitmapDrawable) imageView.getDrawable();
 //                Bitmap bitmap = draw.getBitmap();
-//
 //                Bitmap bitmapFore = ((BitmapDrawable) draw_for).getBitmap();
 //                Bitmap bitmapBack = ((BitmapDrawable) draw_back).getBitmap();
 
-                Bitmap scaledBitmapFore = Bitmap.createScaledBitmap(bitmapFore, share.getWidth(), share.getHeight()-18, true);
-                Bitmap scaledBitmapBack = Bitmap.createScaledBitmap(bitmapBack, imageView.getWidth(), imageView.getHeight(), true);
+                    Bitmap scaledBitmapFore = Bitmap.createScaledBitmap(bitmapFore, share.getWidth(), share.getHeight() +48, true);
+                    Bitmap scaledBitmapBack = Bitmap.createScaledBitmap(bitmapBack, imageView.getWidth(), imageView.getHeight()+48, true);
 
-                Bitmap combineImages = overlay(scaledBitmapBack, scaledBitmapFore);
+                    Bitmap combineImages = overlay(scaledBitmapBack, scaledBitmapFore);
 
-                ImageView image=(ImageView)findViewById(R.id.image);
-                image.setImageBitmap(combineImages);
-
-
+                    ImageView image = (ImageView) findViewById(R.id.image);
+                    image.setImageBitmap(combineImages);
 
 
-                //to get the image from the ImageView (say iv)
-                BitmapDrawable draw = (BitmapDrawable) image.getDrawable();
-                Bitmap bitmap = draw.getBitmap();
+                    //to get the image from the ImageView (say iv)
+                    BitmapDrawable draw = (BitmapDrawable) image.getDrawable();
+                    Bitmap bitmap = draw.getBitmap();
 
-                FileOutputStream outStream = null;
-                File sdCard = Environment.getExternalStorageDirectory();
-                File dir = new File(sdCard.getAbsolutePath() + "/TUNG");
-                dir.mkdirs();
-                String fileName = String.format("%d.png", System.currentTimeMillis());
-                File outFile = new File(dir, fileName);
-                try {
-                    outStream = new FileOutputStream(outFile);
-                } catch (FileNotFoundException e) {
-                    e.printStackTrace();
-                }
-                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outStream);
-                try {
-                    outStream.flush();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                try {
-                    outStream.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
+                    FileOutputStream outStream = null;
+                    File sdCard = Environment.getExternalStorageDirectory();
+                    File dir = new File(sdCard.getAbsolutePath() + "/TUNG");
+                    dir.mkdirs();
+                    String fileName = String.format("%d.jpeg", System.currentTimeMillis());
+                    File outFile = new File(dir, fileName);
+                    try {
+                        outStream = new FileOutputStream(outFile);
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    }
+                    bitmap.compress(Bitmap.CompressFormat.JPEG, 100, outStream);
+                    try {
+                        outStream.flush();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    try {
+                        outStream.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
 
-                Toast.makeText(Camera.this, "成功儲存至相簿", Toast.LENGTH_SHORT).show();
-                //finish();
+                    Toast.makeText(CameraActivity.this, "成功儲存至相簿", Toast.LENGTH_SHORT).show();
+                    galleryAddPic(outFile);
+
+                    //finish();
 
 
-                }else {
+                } else {
 
-                    Toast.makeText(Camera.this, "Please Select Frame", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(CameraActivity.this, "Please Select Frame", Toast.LENGTH_SHORT).show();
                 }
 
             }
         });
+
+    }
+
+    private void galleryAddPic(File file) {
+        System.out.println("Gallary Refreshed...");
+       /* Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+        File f = new File(mCurrentPhotoPath);
+        Uri contentUri = Uri.fromFile(f);
+        mediaScanIntent.setData(contentUri);
+        this.sendBroadcast(mediaScanIntent);*/
+
+        ContentValues values = new ContentValues();
+        values.put(MediaStore.Images.Media.DATA, file.getAbsolutePath());
+        values.put(MediaStore.Images.Media.MIME_TYPE, "DCIM/jpeg");
+        MyApplication.getContext().getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
+
 
     }
 
@@ -208,15 +222,12 @@ public class Camera extends AppCompatActivity {
         // Continue only if the File was successfully created
         if (photoFile != null) {
             //Log.d("mylog", "Photofile not null");
-            Uri photoURI = FileProvider.getUriForFile(Camera.this,
+            Uri photoURI = FileProvider.getUriForFile(CameraActivity.this,
                     "com.vysh.fullsizeimage.fileprovider",
                     photoFile);
             cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
             startActivityForResult(cameraIntent, CAMERA_REQUEST);
         }
-
-
-
     }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -233,7 +244,7 @@ public class Camera extends AppCompatActivity {
             int photoH = bmOptions.outHeight;
 
             // Determine how much to scale down the image
-         //   int scaleFactor = Math.min(photoW/targetW, photoH/targetH);
+            //   int scaleFactor = Math.min(photoW/targetW, photoH/targetH);
 
             // Decode the image file into a Bitmap sized to fill the View
             bmOptions.inJustDecodeBounds = false;
@@ -243,13 +254,13 @@ public class Camera extends AppCompatActivity {
             Bitmap bitmap = BitmapFactory.decodeFile(mCurrentPhotoPath, bmOptions);
 
 
-         //   Bitmap photo = (Bitmap) data.getExtras().get("data");
+            //   Bitmap photo = (Bitmap) data.getExtras().get("data");
 
             imageView.setImageBitmap(bitmap);
 //            imageView.setImageBitmap(photo);
 
-        }else {
-            Intent i =new Intent(Camera.this, MainActivity.class);
+        } else {
+            Intent i = new Intent(CameraActivity.this, MainActivity.class);
             startActivity(i);
             finish();
 
@@ -257,18 +268,14 @@ public class Camera extends AppCompatActivity {
     }
 
 
-
-    public static Bitmap overlay(Bitmap bmp1, Bitmap bmp2)
-    {
-        try
-        {
-            Bitmap bmOverlay = Bitmap.createBitmap(bmp1.getWidth(), bmp1.getHeight(),  bmp1.getConfig());
+    public static Bitmap overlay(Bitmap bmp1, Bitmap bmp2) {
+        try {
+            Bitmap bmOverlay = Bitmap.createBitmap(bmp1.getWidth(), bmp1.getHeight(), bmp1.getConfig());
             Canvas canvas = new Canvas(bmOverlay);
-            canvas.drawBitmap(bmp1, 0,0, null);
+            canvas.drawBitmap(bmp1, 0, 0, null);
             canvas.drawBitmap(bmp2, 0, 0, null);
             return bmOverlay;
-        } catch (Exception e)
-        {
+        } catch (Exception e) {
             // TODO: handle exception
             e.printStackTrace();
             return null;
@@ -279,7 +286,7 @@ public class Camera extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
 
-        Intent i =new Intent(Camera.this, MainActivity.class);
+        Intent i = new Intent(CameraActivity.this, MainActivity.class);
         startActivity(i);
         finish();
 
@@ -301,5 +308,6 @@ public class Camera extends AppCompatActivity {
         //Log.d("mylog", "Path: " + mCurrentPhotoPath);
         return image;
     }
+
 
 }
