@@ -73,8 +73,13 @@
 
         <activity android:name=".Camera"
             android:screenOrientation="landscape"
-            android:configChanges="keyboardHidden|orientation"
-            ></activity>
+            android:configChanges="keyboardHidden|orientation">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MEDIA_MOUNTED" />
+                <data android:scheme="file" />
+            </intent-filter>
+        </activity>
 
         <provider
             android:name="android.support.v4.content.FileProvider"

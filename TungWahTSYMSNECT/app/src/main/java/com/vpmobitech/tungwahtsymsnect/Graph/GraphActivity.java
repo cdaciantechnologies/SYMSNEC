@@ -366,7 +366,8 @@ public class GraphActivity extends AppCompatActivity implements View.OnClickList
         db.insert(DBHelper.TABLE_GRAPH, null, val);
         db.close();
 
-        Toast.makeText(this, "Record Successfully Added in IF Vaccin Chart local DB", Toast.LENGTH_LONG).show();
+//        Toast.makeText(this, "Record Successfully Added in IF Vaccin Chart local DB", Toast.LENGTH_LONG).show();
+        Toast.makeText(this, "已成功添加資料到數據庫", Toast.LENGTH_LONG).show();
 
         txtUpperbp.setText("");
         txtLowerbp.setText("");
@@ -552,22 +553,24 @@ public class GraphActivity extends AppCompatActivity implements View.OnClickList
                 GraphActivity.this).create();
 
         // Setting Dialog Title
-        alertDialog.setTitle("Delete Record");
+//        alertDialog.setTitle("Delete Record");
+        alertDialog.setTitle("刪除紀錄");
 
         // Setting Dialog Message
-        alertDialog.setMessage("You want to delete record?");
+//        alertDialog.setMessage("You want to delete record?");
+        alertDialog.setMessage("你確定刪除紀錄?");
 
         // Setting Icon to Dialog
         alertDialog.setIcon(R.drawable.app_launcher);
 
         // Setting OK Button
-        alertDialog.setButton("OK", new DialogInterface.OnClickListener() {
+        alertDialog.setButton("確定", new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
                 // Write your code here to execute after dialog closed
 
                 DeleteRecord(date);
 
-                Toast.makeText(getApplicationContext(), "You clicked on OK", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getApplicationContext(), "You clicked on OK", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -587,7 +590,8 @@ public class GraphActivity extends AppCompatActivity implements View.OnClickList
         db.delete(helper.TABLE_GRAPH, whereClause, whereArgs);
         db.close();
 
-        Toast.makeText(GraphActivity.this,"Record Deleted Succefully",Toast.LENGTH_SHORT).show();
+//        Toast.makeText(GraphActivity.this,"Record Deleted Succefully",Toast.LENGTH_SHORT).show();
+        Toast.makeText(GraphActivity.this,"紀錄已成功刪除",Toast.LENGTH_SHORT).show();
         startActivity(new Intent(GraphActivity.this,GraphActivity.class));
 
 

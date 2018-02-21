@@ -1,8 +1,11 @@
 package com.vpmobitech.tungwahtsymsnect;
 
+import android.content.ContentValues;
+import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
 import android.graphics.BitmapFactory;
+import android.media.MediaScannerConnection;
 import android.net.Uri;
 import android.provider.MediaStore;
 import android.support.v4.content.FileProvider;
@@ -157,9 +160,10 @@ public class Camera extends AppCompatActivity {
 
                 FileOutputStream outStream = null;
                 File sdCard = Environment.getExternalStorageDirectory();
-                File dir = new File(sdCard.getAbsolutePath() + "/TUNG");
+                File dir = new File(sdCard.getAbsolutePath() + "/Tung");///Pictures/////android/data/getpackegename()
+//                File dir = new File(sdCard.getAbsolutePath()+"/Android/data/"+ getPackageName() + "/tung");///Pictures/////android/data/getpackegename()
                 dir.mkdirs();
-                String fileName = String.format("%d.png", System.currentTimeMillis());
+                String fileName = String.format("%d.jpeg", System.currentTimeMillis());
                 File outFile = new File(dir, fileName);
                 try {
                     outStream = new FileOutputStream(outFile);
@@ -178,14 +182,29 @@ public class Camera extends AppCompatActivity {
                     e.printStackTrace();
                 }
 
+                    addImageGallery(outFile);
+
                 Toast.makeText(Camera.this, "成功儲存至相簿", Toast.LENGTH_SHORT).show();
-                    galleryAddPic();
+
+
+                    //new MediaScannerWrapper(Camera.this,String.valueOf(dir),fileName);
+                    /*sendBroadcast(new Intent(Intent.ACTION_MEDIA_MOUNTED, Uri
+                            .parse("file://"
+                                    + Environment.getExternalStorageDirectory())));*/
+
+                   /* ContentValues values = new ContentValues();
+                    values.put(MediaStore.Images.Media.DATA, String.valueOf(dir));
+                    values.put(MediaStore.Images.Media.MIME_TYPE,fileName);
+                    Camera.this.getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,values);*/
+
+//                    galleryAddPic();
                 //finish();
 
 
                 }else {
 
-                    Toast.makeText(Camera.this, "Please Select Frame", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(Camera.this, "Please Select Frame", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(Camera.this, "請選擇外框", Toast.LENGTH_SHORT).show();
                 }
 
             }
@@ -193,14 +212,22 @@ public class Camera extends AppCompatActivity {
 
     }
 
-    private void galleryAddPic() {
+    /*private void galleryAddPic() {
         System.out.println("Gallary Refreshed...");
         Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
         File f = new File(mCurrentPhotoPath);
         Uri contentUri = Uri.fromFile(f);
         mediaScanIntent.setData(contentUri);
         this.sendBroadcast(mediaScanIntent);
+    }*/
+
+    private void addImageGallery( File file ) {
+        ContentValues values = new ContentValues();
+        values.put(MediaStore.Images.Media.DATA, file.getAbsolutePath());
+        values.put(MediaStore.Images.Media.MIME_TYPE, "DCIM/jpeg"); // setar isso
+        getContentResolver().insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
     }
+
 
     private void startCmaera() {
 
@@ -306,6 +333,38 @@ public class Camera extends AppCompatActivity {
         mCurrentPhotoPath = image.getAbsolutePath();
         //Log.d("mylog", "Path: " + mCurrentPhotoPath);
         return image;
+    }
+
+
+    public class MediaScannerWrapper implements
+            MediaScannerConnection.MediaScannerConnectionClient {
+        private MediaScannerConnection mConnection;
+        private String mPath;
+        private String mMimeType;
+
+        // filePath - where to scan;
+        // mime type of media to scan i.e. "image/jpeg".
+        // use "*/*" for any media
+        public MediaScannerWrapper(Context ctx, String filePath, String mime){
+            mPath = filePath;
+            mMimeType = mime;
+            mConnection = new MediaScannerConnection(ctx, this);
+        }
+
+        // do the scanning
+        public void scan() {
+            mConnection.connect();
+        }
+
+        // start the scan when scanner is ready
+        public void onMediaScannerConnected() {
+            mConnection.scanFile(mPath, mMimeType);
+            Log.w("MediaScannerWrapper", "media file scanned: " + mPath);
+        }
+
+        public void onScanCompleted(String path, Uri uri) {
+            // when scan is completes, update media file tags
+        }
     }
 
 }
