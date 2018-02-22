@@ -52,10 +52,10 @@ public class MyAlarm extends BroadcastReceiver {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder
-                .setTitle("Medicine Reminder")
-                .setMessage("This is reminder for your medicine: "+MedName)
+                .setTitle("醫學提醒")
+                .setMessage("這是提醒你的藥: "+MedName)
                 .setCancelable(false)
-                .setPositiveButton("Yes", new DialogInterface.OnClickListener()
+                .setPositiveButton("好", new DialogInterface.OnClickListener()
                 {
                     public void onClick(DialogInterface dialog, int id)
                     {

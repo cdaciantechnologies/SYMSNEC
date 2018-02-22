@@ -81,7 +81,7 @@ public class GraphActivity extends AppCompatActivity implements View.OnClickList
             Time_is_set = preferences.getString("Time_is_set", "");
             Health_data_section = preferences.getString("Health_data_section", "");
             Alarm_Section = preferences.getString("Alarm_Section", "");
-            Camera = preferences.getString("Camera", "");
+            Camera = preferences.getString("CameraActivity", "");
 
 
             Blood_Presure = preferences.getString("Blood_Presure", "");
@@ -366,7 +366,10 @@ public class GraphActivity extends AppCompatActivity implements View.OnClickList
         db.insert(DBHelper.TABLE_GRAPH, null, val);
         db.close();
 
+<<<<<<< HEAD
 //        Toast.makeText(this, "Record Successfully Added in IF Vaccin Chart local DB", Toast.LENGTH_LONG).show();
+=======
+>>>>>>> f4a24987b375d00152a84d753b40b3efdb7fae78
         Toast.makeText(this, "已成功添加資料到數據庫", Toast.LENGTH_LONG).show();
 
         txtUpperbp.setText("");
@@ -549,15 +552,20 @@ public class GraphActivity extends AppCompatActivity implements View.OnClickList
 
     public void show_dialog(final String date) {
 
-        AlertDialog alertDialog = new AlertDialog.Builder(
-                GraphActivity.this).create();
+        AlertDialog alertDialog = new AlertDialog.Builder(GraphActivity.this).create();
 
         // Setting Dialog Title
+<<<<<<< HEAD
 //        alertDialog.setTitle("Delete Record");
         alertDialog.setTitle("刪除紀錄");
 
         // Setting Dialog Message
 //        alertDialog.setMessage("You want to delete record?");
+=======
+        alertDialog.setTitle(" 刪除紀錄");
+
+        // Setting Dialog Message
+>>>>>>> f4a24987b375d00152a84d753b40b3efdb7fae78
         alertDialog.setMessage("你確定刪除紀錄?");
 
         // Setting Icon to Dialog
@@ -570,7 +578,11 @@ public class GraphActivity extends AppCompatActivity implements View.OnClickList
 
                 DeleteRecord(date);
 
+<<<<<<< HEAD
 //                Toast.makeText(getApplicationContext(), "You clicked on OK", Toast.LENGTH_SHORT).show();
+=======
+                Toast.makeText(getApplicationContext(), "你已點撃確定", Toast.LENGTH_SHORT).show();
+>>>>>>> f4a24987b375d00152a84d753b40b3efdb7fae78
             }
         });
 
@@ -590,7 +602,10 @@ public class GraphActivity extends AppCompatActivity implements View.OnClickList
         db.delete(helper.TABLE_GRAPH, whereClause, whereArgs);
         db.close();
 
+<<<<<<< HEAD
 //        Toast.makeText(GraphActivity.this,"Record Deleted Succefully",Toast.LENGTH_SHORT).show();
+=======
+>>>>>>> f4a24987b375d00152a84d753b40b3efdb7fae78
         Toast.makeText(GraphActivity.this,"紀錄已成功刪除",Toast.LENGTH_SHORT).show();
         startActivity(new Intent(GraphActivity.this,GraphActivity.class));
 

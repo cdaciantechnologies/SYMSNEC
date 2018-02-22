@@ -56,7 +56,11 @@ public class ShowGraph extends AppCompatActivity implements OnChartGestureListen
     Spinner spnDieses;
     TextView tbgtxt,tvSelectCat;
     String SelectCategory,langPos,Medicine_Name,AM,PM,Graph,Set_Alarm,Time_is_set,Health_data_section,Alarm_Section,Camera,UpperLimit,LowerLimit;
+<<<<<<< HEAD
     String dieses_Name_Chi[] = {"1 上壓","2 下壓","3 血糖","4 體重","5 脈搏"};
+=======
+    String dieses_Name_Chi[] = {"1 上壓","2 下壓","3 脈搏","4 體重","5 血糖"};
+>>>>>>> f4a24987b375d00152a84d753b40b3efdb7fae78
 
     MotionEvent me;
 
@@ -89,7 +93,7 @@ public class ShowGraph extends AppCompatActivity implements OnChartGestureListen
             Time_is_set = preferences.getString("Time_is_set", "");
             Health_data_section = preferences.getString("Health_data_section", "");
             Alarm_Section = preferences.getString("Alarm_Section", "");
-            Camera = preferences.getString("Camera", "");
+            Camera = preferences.getString("CameraActivity", "");
             SelectCategory = preferences.getString("SelectCategory", "");
             UpperLimit = preferences.getString("UpperLimit", "");
             LowerLimit = preferences.getString("LowerLimit", "");
@@ -151,7 +155,7 @@ public class ShowGraph extends AppCompatActivity implements OnChartGestureListen
 
 
                 }
-                else if(pos==2)
+                else if(pos==4)
                 {
                     helper.getdataGrph("sugar");
 
@@ -167,7 +171,7 @@ public class ShowGraph extends AppCompatActivity implements OnChartGestureListen
                     leftAxis.setAxisMaxValue(270f);
                     leftAxis.setAxisMinValue(0f);
                 }
-                else if(pos==4)
+                else if(pos==2)
                 {
                     helper.getdataGrph("pulse");
                     leftAxis.setAxisMaxValue(150f);

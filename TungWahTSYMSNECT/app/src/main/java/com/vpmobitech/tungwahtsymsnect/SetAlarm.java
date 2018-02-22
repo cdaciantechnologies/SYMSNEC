@@ -89,7 +89,7 @@ public class SetAlarm extends AppCompatActivity {
             Time_is_set = preferences.getString("Time_is_set", "");
             Health_data_section = preferences.getString("Health_data_section", "");
             Alarm_Section = preferences.getString("Alarm_Section", "");
-            Camera = preferences.getString("Camera", "");
+            Camera = preferences.getString("CameraActivity", "");
         }catch (NullPointerException e)
         {
             e.printStackTrace();
@@ -207,7 +207,7 @@ public class SetAlarm extends AppCompatActivity {
         AlarmManager am = (AlarmManager) this.getSystemService(this.ALARM_SERVICE);
         am.set(AlarmManager.RTC_WAKEUP, time, sender);
 
-        Toast.makeText(this, "Alarm is set", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "鬧鐘已設置", Toast.LENGTH_SHORT).show();
 
 
         InsertVaccinChartInLocal();
@@ -231,7 +231,7 @@ public class SetAlarm extends AppCompatActivity {
         db.insert(DBHelper.TABLE, null, val);
         db.close();
 
-        Toast.makeText(this, "Record Successfully Added in IF Vaccin Chart local DB", Toast.LENGTH_LONG).show();
+        Toast.makeText(SetAlarm.this, "已成功添加資料到數據庫", Toast.LENGTH_LONG).show();
         datamodel=  helper.getdata();
         recycler =new RecycleAdapter(SetAlarm.this,datamodel);
         /*recycler=dataModels.remove(getAdapterPosition());

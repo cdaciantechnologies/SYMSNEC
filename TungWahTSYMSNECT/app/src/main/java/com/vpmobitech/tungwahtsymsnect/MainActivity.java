@@ -28,19 +28,11 @@ import android.view.MenuItem;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.vpmobitech.tungwahtsymsnect.Graph.GraphActivity;
 import com.vpmobitech.tungwahtsymsnect.Services.LockService;
-import com.vpmobitech.tungwahtsymsnect.Services.MyService;
-
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -111,7 +103,7 @@ public class MainActivity extends AppCompatActivity
             Time_is_set = preferences.getString("Time_is_set", "");
             Health_data_section = preferences.getString("Health_data_section", "");
             Alarm_Section = preferences.getString("Alarm_Section", "");
-            Camera = preferences.getString("Camera", "");
+            Camera = preferences.getString("CameraActivity", "");
 
 
 
@@ -161,7 +153,7 @@ public class MainActivity extends AppCompatActivity
             editor.putString("Time_is_set","時間已設定");
             editor.putString("Health_data_section","健康指數");
             editor.putString("Alarm_Section","用藥提示");
-            editor.putString("Camera","照相區");
+            editor.putString("CameraActivity","照相區");
 
 
             editor.putString("Blood_Presure","血壓");
@@ -174,7 +166,7 @@ public class MainActivity extends AppCompatActivity
             editor.putString("Time/Min","時間/每分鐘");
             editor.putString("Pound","磅");
             editor.putString("Date","日期");
-            editor.putString("btnAdd","加");
+            editor.putString("btnAdd","加入紀錄");
             editor.putString("btnShowGraph","顯示圖表");
             editor.putString("Action","刪除");
             editor.putString("SelectCategory","選擇類別");
@@ -192,7 +184,7 @@ public class MainActivity extends AppCompatActivity
             Time_is_set = preferences2.getString("Time_is_set", "");
             Health_data_section = preferences2.getString("Health_data_section", "");
             Alarm_Section = preferences2.getString("Alarm_Section", "");
-            Camera = preferences2.getString("Camera", "");
+            Camera = preferences2.getString("CameraActivity", "");
 
             nav_camera.setTitle(Camera);
             nav_alarm.setTitle(Set_Alarm);
@@ -207,7 +199,7 @@ public class MainActivity extends AppCompatActivity
             System.out.println("Time_is_set"+Time_is_set);
             System.out.println("Health_data_section"+Health_data_section);
             System.out.println("Alarm_Section"+Alarm_Section);
-            System.out.println("Camera"+Camera);
+            System.out.println("CameraActivity"+Camera);
 
 
         }else if (langPos.equals("0")) {
@@ -267,7 +259,11 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.nav_camera) {
             OpenCamera();
+<<<<<<< HEAD
 //            startActivity(new Intent(MainActivity.this,Camera.class));
+=======
+//            startActivity(new Intent(MainActivity.this,CameraActivity.class));
+>>>>>>> f4a24987b375d00152a84d753b40b3efdb7fae78
 
         } else if (id == R.id.nav_alarm) {
              /*navigationView.getMenu().getItem(0).setChecked(true);
@@ -303,7 +299,11 @@ public class MainActivity extends AppCompatActivity
                 //Show Information about why you need the permission
                 AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
                 builder.setTitle("Need Multiple Permissions");
+<<<<<<< HEAD
                 builder.setMessage("This app needs Camera and Storage permissions.");
+=======
+                builder.setMessage("This app needs CameraActivity and Storage permissions.");
+>>>>>>> f4a24987b375d00152a84d753b40b3efdb7fae78
                 builder.setPositiveButton("Grant", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -323,7 +323,11 @@ public class MainActivity extends AppCompatActivity
                 // Redirect to Settings after showing Information about why you need the permission
                 AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
                 builder.setTitle("Need Multiple Permissions");
+<<<<<<< HEAD
                 builder.setMessage("This app needs Camera and Storage permissions.");
+=======
+                builder.setMessage("This app needs CameraActivity and Storage permissions.");
+>>>>>>> f4a24987b375d00152a84d753b40b3efdb7fae78
                 builder.setPositiveButton("Grant", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -333,7 +337,11 @@ public class MainActivity extends AppCompatActivity
                         Uri uri = Uri.fromParts("package", getPackageName(), null);
                         intent.setData(uri);
                         startActivityForResult(intent, REQUEST_PERMISSION_SETTING);
+<<<<<<< HEAD
                         Toast.makeText(getBaseContext(), "Go to Permissions to Grant  Camera and Storage", Toast.LENGTH_LONG).show();
+=======
+                        Toast.makeText(getBaseContext(), "Go to Permissions to Grant  CameraActivity and Storage", Toast.LENGTH_LONG).show();
+>>>>>>> f4a24987b375d00152a84d753b40b3efdb7fae78
                     }
                 });
                 builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -385,7 +393,11 @@ public class MainActivity extends AppCompatActivity
                 //txtPermissions.setText("Permissions Required");
                 AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
                 builder.setTitle("Need Multiple Permissions");
+<<<<<<< HEAD
                 builder.setMessage("This app needs Camera and Storage permissions.");
+=======
+                builder.setMessage("This app needs CameraActivity and Storage permissions.");
+>>>>>>> f4a24987b375d00152a84d753b40b3efdb7fae78
                 builder.setPositiveButton("Grant", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -480,7 +492,7 @@ public class MainActivity extends AppCompatActivity
                     editor.putString("Time_is_set","時間已設定");
                     editor.putString("Health_data_section","健康指數");
                     editor.putString("Alarm_Section","用藥提示");
-                    editor.putString("Camera","照相區");
+                    editor.putString("CameraActivity","照相區");
 
 
                     editor.putString("Blood_Presure","血壓");
@@ -515,7 +527,7 @@ public class MainActivity extends AppCompatActivity
                     editor.putString("Time_is_set","Time_is_set");
                     editor.putString("Health_data_section","Health data section");
                     editor.putString("Alarm_Section","Alarm_Section");
-                    editor.putString("Camera","Camera");
+                    editor.putString("CameraActivity","CameraActivity");
 
 
                     editor.putString("Blood_Presure","Blood Presure");
@@ -586,7 +598,11 @@ public class MainActivity extends AppCompatActivity
             LocationPermission();
         }
         else {
+<<<<<<< HEAD
             startActivity(new Intent(MainActivity.this,Camera.class));
+=======
+            startActivity(new Intent(MainActivity.this,CameraActivity.class));
+>>>>>>> f4a24987b375d00152a84d753b40b3efdb7fae78
         }
     }
 
