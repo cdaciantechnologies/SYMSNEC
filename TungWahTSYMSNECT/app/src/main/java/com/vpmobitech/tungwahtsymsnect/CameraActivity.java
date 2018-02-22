@@ -139,18 +139,20 @@ public class CameraActivity extends AppCompatActivity {
 //                Bitmap bitmapFore = ((BitmapDrawable) draw_for).getBitmap();
 //                Bitmap bitmapBack = ((BitmapDrawable) draw_back).getBitmap();
 
-                    Bitmap scaledBitmapFore = Bitmap.createScaledBitmap(bitmapFore, share.getWidth(), share.getHeight() +48, true);
-                    Bitmap scaledBitmapBack = Bitmap.createScaledBitmap(bitmapBack, imageView.getWidth(), imageView.getHeight()+48, true);
+                    Bitmap scaledBitmapFore = Bitmap.createScaledBitmap(bitmapFore, share.getWidth(), share.getHeight(), true);
+                    Bitmap scaledBitmapBack = Bitmap.createScaledBitmap(bitmapBack, imageView.getWidth(), imageView.getHeight(), true);
 
                     Bitmap combineImages = overlay(scaledBitmapBack, scaledBitmapFore);
 
                     ImageView image = (ImageView) findViewById(R.id.image);
                     image.setImageBitmap(combineImages);
 
-
+                    share.setDrawingCacheEnabled(true);
+                    share.buildDrawingCache();
+                    Bitmap bitmap = share.getDrawingCache();
                     //to get the image from the ImageView (say iv)
                     BitmapDrawable draw = (BitmapDrawable) image.getDrawable();
-                    Bitmap bitmap = draw.getBitmap();
+                   // Bitmap bitmap = combineImages;//draw.getBitmap();
 
                     FileOutputStream outStream = null;
                     File sdCard = Environment.getExternalStorageDirectory();

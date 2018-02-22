@@ -207,7 +207,7 @@ public class SetAlarm extends AppCompatActivity {
         AlarmManager am = (AlarmManager) this.getSystemService(this.ALARM_SERVICE);
         am.set(AlarmManager.RTC_WAKEUP, time, sender);
 
-        Toast.makeText(this, "Alarm is set", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "鬧鐘已設置", Toast.LENGTH_SHORT).show();
 
 
         InsertVaccinChartInLocal();
