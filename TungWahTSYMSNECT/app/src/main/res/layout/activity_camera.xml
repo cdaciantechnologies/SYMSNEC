@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<RelativeLayout
-    android:layout_width="match_parent"
+<RelativeLayout android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:android="http://schemas.android.com/apk/res/android" >
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
@@ -30,11 +30,9 @@
     android:layout_height="wrap_content"
     android:layout_below="@+id/toolbar"
     android:padding="2dp"
-<<<<<<< HEAD
+
     tools:context=".Camera">
-=======
-    tools:context=".CameraActivity">
->>>>>>> f4a24987b375d00152a84d753b40b3efdb7fae78
+
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -75,31 +73,33 @@
             android:id="@+id/share"
             android:padding="3dp"
             android:layout_marginLeft="110dp"
-<<<<<<< HEAD
             android:layout_width="430dp"
-=======
-            android:layout_width="400dp"
->>>>>>> f4a24987b375d00152a84d753b40b3efdb7fae78
+            android:layout_height="wrap_content">
+
+            <!--android:layout_width="400dp"-->
+
+            <!--&gt;>>>>> f4a24987b375d00152a84d753b40b3efdb7fae78
 
             android:layout_height="wrap_content"
-            android:layout_marginTop="5dp">
+            android:layout_marginTop="5dp">-->
 
 
             <ImageView
                 android:id="@+id/imageView"
                 android:paddingRight="10dp"
 
-<<<<<<< HEAD
+
                 android:layout_width="430dp"
                 android:layout_height="215dp"
-                android:scaleType="fitXY"
-=======
-                android:layout_width="400dp"
-                android:layout_height="215dp"
-                android:scaleType="centerCrop"
->>>>>>> f4a24987b375d00152a84d753b40b3efdb7fae78
+                android:scaleType="fitXY" />
+
+            <!--android:layout_width="400dp"
+            android:layout_height="215dp"
+            android:scaleType="centerCrop"-->
+
+            <!--&gt;>>>>> f4a24987b375d00152a84d753b40b3efdb7fae78
                 android:scrollbars="none"
-                android:adjustViewBounds="true"
+                android:adjustViewBounds="true"-->
                /><!-- android:drawSelectorOnTop="true"
                 android:clipChildren="true"
         android:adjustViewBounds="true"

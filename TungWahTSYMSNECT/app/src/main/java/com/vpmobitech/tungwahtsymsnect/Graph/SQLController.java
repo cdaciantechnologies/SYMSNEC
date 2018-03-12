@@ -46,7 +46,7 @@ public class SQLController {
 				DBHelper.PULSE,DBHelper.WEIGHT,DBHelper.SUGAR };//,DBHelper.DELETE
 
 		Cursor c = database.query(DBHelper.TABLE_GRAPH, allColumns, null, null, null,
-				null, null);
+				null, DBHelper.I_ID +" DESC LIMIT 10");
 
 		if (c != null) {
 			c.moveToFirst();

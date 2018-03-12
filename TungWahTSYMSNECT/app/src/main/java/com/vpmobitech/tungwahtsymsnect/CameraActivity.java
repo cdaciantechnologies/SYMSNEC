@@ -195,11 +195,6 @@ public class CameraActivity extends AppCompatActivity {
 
     private void galleryAddPic(File file) {
         System.out.println("Gallary Refreshed...");
-       /* Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
-        File f = new File(mCurrentPhotoPath);
-        Uri contentUri = Uri.fromFile(f);
-        mediaScanIntent.setData(contentUri);
-        this.sendBroadcast(mediaScanIntent);*/
 
         ContentValues values = new ContentValues();
         values.put(MediaStore.Images.Media.DATA, file.getAbsolutePath());

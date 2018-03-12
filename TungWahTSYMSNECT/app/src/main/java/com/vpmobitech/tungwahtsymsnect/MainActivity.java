@@ -25,6 +25,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.Button;
@@ -79,9 +80,21 @@ public class MainActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
 
         webView = (WebView) findViewById(R.id.webView1);
-        webView.getSettings().setJavaScriptEnabled(true);
         webView.setWebViewClient(new WebViewClient());
+        webView.getSettings().setJavaScriptEnabled(true); // enable javascript
+//        webView.setWebChromeClient(new WebChromeClient());
         webView.loadUrl("http://flamesquadsdemo.com/tw/");
+
+        /*webView.getSettings().setAllowContentAccess(true);
+        webView.getSettings().setAllowFileAccess(true);
+        webView.getSettings().setDatabaseEnabled(true);
+        webView.getSettings().setDomStorageEnabled(true);*/
+
+//        webView.getSettings().setJavaScriptEnabled(true);
+//        webView.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
+        webView.getSettings().setSupportMultipleWindows(true);
+//        webView.setWebChromeClient(new WebChromeClient());
+//        webView.setHorizontalScrollBarEnabled(false);
 
         startService(new Intent(getApplicationContext(), LockService.class));
 
@@ -259,11 +272,7 @@ public class MainActivity extends AppCompatActivity
 
         if (id == R.id.nav_camera) {
             OpenCamera();
-<<<<<<< HEAD
-//            startActivity(new Intent(MainActivity.this,Camera.class));
-=======
-//            startActivity(new Intent(MainActivity.this,CameraActivity.class));
->>>>>>> f4a24987b375d00152a84d753b40b3efdb7fae78
+
 
         } else if (id == R.id.nav_alarm) {
              /*navigationView.getMenu().getItem(0).setChecked(true);
@@ -299,11 +308,11 @@ public class MainActivity extends AppCompatActivity
                 //Show Information about why you need the permission
                 AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
                 builder.setTitle("Need Multiple Permissions");
-<<<<<<< HEAD
+
                 builder.setMessage("This app needs Camera and Storage permissions.");
-=======
+
                 builder.setMessage("This app needs CameraActivity and Storage permissions.");
->>>>>>> f4a24987b375d00152a84d753b40b3efdb7fae78
+
                 builder.setPositiveButton("Grant", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -323,11 +332,8 @@ public class MainActivity extends AppCompatActivity
                 // Redirect to Settings after showing Information about why you need the permission
                 AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
                 builder.setTitle("Need Multiple Permissions");
-<<<<<<< HEAD
                 builder.setMessage("This app needs Camera and Storage permissions.");
-=======
                 builder.setMessage("This app needs CameraActivity and Storage permissions.");
->>>>>>> f4a24987b375d00152a84d753b40b3efdb7fae78
                 builder.setPositiveButton("Grant", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -337,11 +343,8 @@ public class MainActivity extends AppCompatActivity
                         Uri uri = Uri.fromParts("package", getPackageName(), null);
                         intent.setData(uri);
                         startActivityForResult(intent, REQUEST_PERMISSION_SETTING);
-<<<<<<< HEAD
                         Toast.makeText(getBaseContext(), "Go to Permissions to Grant  Camera and Storage", Toast.LENGTH_LONG).show();
-=======
                         Toast.makeText(getBaseContext(), "Go to Permissions to Grant  CameraActivity and Storage", Toast.LENGTH_LONG).show();
->>>>>>> f4a24987b375d00152a84d753b40b3efdb7fae78
                     }
                 });
                 builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -393,11 +396,8 @@ public class MainActivity extends AppCompatActivity
                 //txtPermissions.setText("Permissions Required");
                 AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
                 builder.setTitle("Need Multiple Permissions");
-<<<<<<< HEAD
                 builder.setMessage("This app needs Camera and Storage permissions.");
-=======
                 builder.setMessage("This app needs CameraActivity and Storage permissions.");
->>>>>>> f4a24987b375d00152a84d753b40b3efdb7fae78
                 builder.setPositiveButton("Grant", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -598,11 +598,8 @@ public class MainActivity extends AppCompatActivity
             LocationPermission();
         }
         else {
-<<<<<<< HEAD
             startActivity(new Intent(MainActivity.this,Camera.class));
-=======
             startActivity(new Intent(MainActivity.this,CameraActivity.class));
->>>>>>> f4a24987b375d00152a84d753b40b3efdb7fae78
         }
     }
 

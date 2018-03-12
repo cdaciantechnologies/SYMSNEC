@@ -34,13 +34,38 @@
 
     </android.support.v7.widget.Toolbar>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/llspnerc"
+        android:padding="5dp"
+        android:layout_below="@+id/galleryToolbar"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_gravity="center_horizontal"
+            android:gravity="center_horizontal"
+            android:id="@+id/tvSelectRecord"
+            android:text="選擇記錄"/>
+        <!--android:text="Select Record"-->
+        <Spinner
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:entries="@array/graph_record"
+            android:id="@+id/spnGraphRecord"></Spinner>
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/llspn"
         android:padding="5dp"
-        android:layout_below="@+id/galleryToolbar"
+        android:layout_marginTop="5dp"
+        android:layout_below="@+id/llspnerc"
         android:orientation="horizontal">
 
         <TextView

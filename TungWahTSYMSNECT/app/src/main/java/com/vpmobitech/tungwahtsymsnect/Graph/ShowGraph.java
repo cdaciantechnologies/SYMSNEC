@@ -53,14 +53,14 @@ public class ShowGraph extends AppCompatActivity implements OnChartGestureListen
     DBHelper helper ;
     private LineChart mChart;
     ImageButton btnBack;
-    Spinner spnDieses;
+    Spinner spnDieses,spnGraphRecord;
     TextView tbgtxt,tvSelectCat;
     String SelectCategory,langPos,Medicine_Name,AM,PM,Graph,Set_Alarm,Time_is_set,Health_data_section,Alarm_Section,Camera,UpperLimit,LowerLimit;
-<<<<<<< HEAD
-    String dieses_Name_Chi[] = {"1 上壓","2 下壓","3 血糖","4 體重","5 脈搏"};
-=======
+
+//    String dieses_Name_Chi[] = {"1 上壓","2 下壓","3 血糖","4 體重","5 脈搏"};
+
     String dieses_Name_Chi[] = {"1 上壓","2 下壓","3 脈搏","4 體重","5 血糖"};
->>>>>>> f4a24987b375d00152a84d753b40b3efdb7fae78
+
 
     MotionEvent me;
 
@@ -75,6 +75,7 @@ public class ShowGraph extends AppCompatActivity implements OnChartGestureListen
         setContentView(R.layout.activity_show_graph);
 
         spnDieses=(Spinner)findViewById(R.id.spnDieses);
+        spnGraphRecord=(Spinner)findViewById(R.id.spnGraphRecord);
         helper = new DBHelper(this);
 
         btnBack=(ImageButton)findViewById(R.id.btnBack);
@@ -128,76 +129,16 @@ public class ShowGraph extends AppCompatActivity implements OnChartGestureListen
         spnDieses.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                int pos=spnDieses.getSelectedItemPosition();
 
                 SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(ShowGraph.this);
                 SharedPreferences.Editor editor = preferences.edit();
                 YAxis leftAxis = mChart.getAxisLeft();
                 leftAxis.removeAllLimitLines();
 
-                if (pos==0)
-                {
-                    helper.getdataGrph("upper_bp");
-
-                    leftAxis.setAxisMaxValue(270f);
-                    leftAxis.setAxisMinValue(0f);
-                    onChartSingleTapped(me);
-
-                }
-               else if (pos==1)
-                {
-                    helper.getdataGrph("lower_bp");
-
-                    leftAxis.setAxisMaxValue(270f);
-                    leftAxis.setAxisMinValue(0f);
-
-                    onChartSingleTapped(me);
+                setDataAgainstSpinner();
 
 
-                }
-                else if(pos==4)
-                {
-                    helper.getdataGrph("sugar");
 
-
-                    leftAxis.setAxisMaxValue(30f);
-                    leftAxis.setAxisMinValue(0f);
-                    onChartSingleTapped(me);
-                }
-                else if(pos==3)
-                {
-                    helper.getdataGrph("weight");
-                    onChartSingleTapped(me);
-                    leftAxis.setAxisMaxValue(270f);
-                    leftAxis.setAxisMinValue(0f);
-                }
-                else if(pos==2)
-                {
-                    helper.getdataGrph("pulse");
-                    leftAxis.setAxisMaxValue(150f);
-                    leftAxis.setAxisMinValue(0f);
-
-                }
-
-                System.out.println("Arraylistof X=="+helper.xAxis.toString());
-                System.out.println("Arraylistof Y=="+helper.yAxis.toString());
-                System.out.println("Arraylistof Y=="+helper.xDate.toString());
-
-                // add data
-                mChart.setOnChartGestureListener(ShowGraph.this);
-
-//                mChart.setOnTouchListener(true);
-                onChartSingleTapped(me);
-//                mChart.setDescription("Demo Line Chart");
-//                mChart.setNoDataTextDescription("You need to provide data for the chart.");
-
-               /* // enable touch gestures
-                mChart.setTouchEnabled(true);
-
-                // enable scaling and dragging
-                mChart.setDragEnabled(true);
-                mChart.setScaleEnabled(true);*/
-                setData();
                 try {
                     mChart.getLineData();
                     mChart.notifyDataSetChanged();
@@ -212,6 +153,29 @@ public class ShowGraph extends AppCompatActivity implements OnChartGestureListen
 
             }
         });
+
+
+        spnGraphRecord.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+                setDataAgainstSpinner();
+
+                try {
+                    mChart.getLineData();
+                    mChart.notifyDataSetChanged();
+                    mChart.invalidate();
+                }catch (IllegalMonitorStateException e){
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
 
 
         mChart = (LineChart) findViewById(R.id.linechart);
@@ -296,6 +260,29 @@ public class ShowGraph extends AppCompatActivity implements OnChartGestureListen
         mChart.invalidate();
 
     }
+
+    public void setDataAgainstSpinner()
+    {
+        int graph_pos=spnGraphRecord.getSelectedItemPosition();
+        String[] size_values = getResources().getStringArray(R.array.graph_record_value);
+        int size = Integer.valueOf(size_values[graph_pos]);
+
+        System.out.println("size = " + size);
+
+
+        int dies_pos=spnDieses.getSelectedItemPosition();
+        String[] size_values_Dieses = getResources().getStringArray(R.array.dieses_Name_Chi_Values);
+        String size_Dies = size_values_Dieses[dies_pos];
+
+        System.out.println("size_Dies = " + size_Dies);
+
+
+        helper.getdataGrpha(size_Dies,size);
+
+        setData();
+    }
+
+
 
     private ArrayList<String> setXAxisValues(){
         ArrayList<String> xVals = new ArrayList<String>();

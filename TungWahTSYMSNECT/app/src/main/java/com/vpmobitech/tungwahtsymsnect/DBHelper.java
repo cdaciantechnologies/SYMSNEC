@@ -110,15 +110,17 @@ public class DBHelper extends SQLiteOpenHelper {
     }
 
 
-    public List<DataModel> getdataGrph(String dname){
-        // DataModel dataModel = new DataModel();
+
+    public List<DataModel> getdataGrpha(String dname,int noOfRec){
         List<DataModel> data=new ArrayList<>();
         SQLiteDatabase db = this.getWritableDatabase();
-//        Cursor cursor = db.rawQuery("select * from "+TABLE_GRAPH+" ;",null);
         xAxis=new ArrayList<String>();
         xDate=new ArrayList<String>();
         yAxis=new ArrayList<String>();
-        Cursor cursor = db.rawQuery("select "+dname+",date from "+TABLE_GRAPH+";",null);//order by date limit=10
+        Cursor cursor = db.rawQuery("select "+dname+",date from "+TABLE_GRAPH +" Order by "+DBHelper.I_ID+" DESC LIMIT "+noOfRec+";",null);//order by date limit=10
+
+//        Cursor cursor = db.query(DBHelper.TABLE_GRAPH, new String[]{dname}, null, null, null,
+//                null, DBHelper.I_ID +" DESC LIMIT "+noOfRec);
 
         StringBuffer stringBuffer = new StringBuffer();
         DataModel dataModel = null;
@@ -127,9 +129,7 @@ public class DBHelper extends SQLiteOpenHelper {
             String cname = cursor.getString(cursor.getColumnIndexOrThrow(dname));
 
             yAxis.add(cname);
-           /* String upper_bp = cursor.getString(cursor.getColumnIndexOrThrow("upper_bp"));
-            String sugar = cursor.getString(cursor.getColumnIndexOrThrow("sugar"));
-            String weight = cursor.getString(cursor.getColumnIndexOrThrow("weight"));*/
+
             String date = cursor.getString(cursor.getColumnIndexOrThrow("date"));
 
             xAxis.add(date);
@@ -138,21 +138,15 @@ public class DBHelper extends SQLiteOpenHelper {
 
             String remainder = date.substring(date.indexOf("-")+1, date.length());
 
-            System.out.println("remainder=="+remainder+"    DateInitial=="+DateInitial);
+            System.out.println("remainder=2="+remainder+"    DateInitial=2="+DateInitial);
 
 
             xDate.add(DateInitial);
 
-            System.out.println("cname=="+cname+"    date=="+date);
+            System.out.println("cname=2="+cname+"    date=2="+date);
 
-            /*dataModel.setName(upper_bp);
-            dataModel.setCity(sugar);
-            dataModel.setSrNo(weight);
-            dataModel.setSrNo(date);*/
 
-//            dataModel.setCounty(country);
             stringBuffer.append(dataModel);
-            // stringBuffer.append(dataModel);
             data.add(dataModel);
         }
 

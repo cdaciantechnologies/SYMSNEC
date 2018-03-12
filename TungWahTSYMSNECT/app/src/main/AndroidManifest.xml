@@ -72,7 +72,7 @@
             </intent-filter>
         </receiver>
 
-<<<<<<< HEAD
+
         <activity android:name=".Camera"
             android:screenOrientation="landscape"
             android:configChanges="keyboardHidden|orientation">
@@ -83,13 +83,12 @@
             </intent-filter>
         </activity>
 
-=======
+
         <activity android:name=".CameraActivity"
             android:screenOrientation="landscape"
-            android:configChanges="keyboardHidden|orientation"
-            ></activity>
+            android:configChanges="keyboardHidden|orientation"></activity>
 
->>>>>>> f4a24987b375d00152a84d753b40b3efdb7fae78
+
         <provider
             android:name="android.support.v4.content.FileProvider"
             android:authorities="com.vysh.fullsizeimage.fileprovider"
