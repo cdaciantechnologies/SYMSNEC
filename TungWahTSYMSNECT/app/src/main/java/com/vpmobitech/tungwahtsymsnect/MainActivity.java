@@ -82,19 +82,10 @@ public class MainActivity extends AppCompatActivity
         webView = (WebView) findViewById(R.id.webView1);
         webView.setWebViewClient(new WebViewClient());
         webView.getSettings().setJavaScriptEnabled(true); // enable javascript
-//        webView.setWebChromeClient(new WebChromeClient());
         webView.loadUrl("http://flamesquadsdemo.com/tw/");
 
-        /*webView.getSettings().setAllowContentAccess(true);
-        webView.getSettings().setAllowFileAccess(true);
-        webView.getSettings().setDatabaseEnabled(true);
-        webView.getSettings().setDomStorageEnabled(true);*/
 
-//        webView.getSettings().setJavaScriptEnabled(true);
-//        webView.getSettings().setJavaScriptCanOpenWindowsAutomatically(true);
         webView.getSettings().setSupportMultipleWindows(true);
-//        webView.setWebChromeClient(new WebChromeClient());
-//        webView.setHorizontalScrollBarEnabled(false);
 
         startService(new Intent(getApplicationContext(), LockService.class));
 
@@ -598,7 +589,7 @@ public class MainActivity extends AppCompatActivity
             LocationPermission();
         }
         else {
-            startActivity(new Intent(MainActivity.this,Camera.class));
+//            startActivity(new Intent(MainActivity.this,Camera.class));
             startActivity(new Intent(MainActivity.this,CameraActivity.class));
         }
     }
