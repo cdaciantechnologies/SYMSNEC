@@ -72,12 +72,11 @@
         <FrameLayout
             android:id="@+id/share"
             android:padding="3dp"
-            android:layout_marginLeft="110dp"
+            android:layout_centerHorizontal="true"
             android:layout_width="430dp"
-            android:layout_height="wrap_content">
+            android:layout_height="220dp">
 
             <!--android:layout_width="400dp"-->
-ma
             <!--&gt;>>>>> f4a24987b375d00152a84d753b40b3efdb7fae78
 
             android:layout_height="wrap_content"
@@ -86,11 +85,10 @@ ma
 
             <ImageView
                 android:id="@+id/imageView"
-                android:paddingRight="10dp"
-                android:padding="10dp"
                 android:layout_width="430dp"
-                android:layout_height="215dp"
-                android:scaleType="fitXY" />
+                android:layout_height="wrap_content"
+                android:scaleType="centerCrop"
+                />
 
             <!--android:layout_width="400dp"
             android:layout_height="215dp"

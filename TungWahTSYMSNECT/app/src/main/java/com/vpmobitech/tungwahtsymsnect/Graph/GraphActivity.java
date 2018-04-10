@@ -452,7 +452,10 @@ public class GraphActivity extends AppCompatActivity implements View.OnClickList
         sqlcon.open();
         Cursor c = sqlcon.readEntry();
 
-        final int rows = c.getCount();
+        int rows = c.getCount();
+        if(rows>10)
+            rows=10;
+
         int cols = c.getColumnCount();
 
         c.moveToFirst();

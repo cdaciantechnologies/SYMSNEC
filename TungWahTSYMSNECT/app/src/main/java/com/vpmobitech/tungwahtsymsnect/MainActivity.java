@@ -2,6 +2,7 @@ package com.vpmobitech.tungwahtsymsnect;
 
 import android.Manifest;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -80,12 +81,23 @@ public class MainActivity extends AppCompatActivity
         setSupportActionBar(toolbar);
 
         webView = (WebView) findViewById(R.id.webView1);
-        webView.setWebViewClient(new WebViewClient());
+        webView.setWebViewClient(new WebViewClient(){
+            @Override
+            public boolean shouldOverrideUrlLoading(WebView view, String url) {
+                if (url.contains("/calendar/")) {
+                   view.loadUrl(url);
+                    return true;
+                } else {
+                    view.getSettings().setSupportMultipleWindows(true);
+                    return false;
+                }
+            }
+        });
         webView.getSettings().setJavaScriptEnabled(true); // enable javascript
+        //webView.loadUrl("http://apps.tungwahcsd.org/symsnec/");
         webView.loadUrl("http://flamesquadsdemo.com/tw/");
 
-
-        webView.getSettings().setSupportMultipleWindows(true);
+       // webView.getSettings().setSupportMultipleWindows(true);
 
         startService(new Intent(getApplicationContext(), LockService.class));
 
